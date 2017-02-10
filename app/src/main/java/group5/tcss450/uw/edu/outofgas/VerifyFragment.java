@@ -22,8 +22,21 @@ import java.io.InputStreamReader;
 import java.net.HttpURLConnection;
 import java.net.URL;
 
+/*
+ * Fragment for verifying the user registration.
+ */
+
 public class VerifyFragment extends Fragment {
+    
+    /*
+     * Edittext field for the verifcation code.
+     */
+    
     private EditText verifyCode;
+    
+    /*
+     * Partial url for access to the database.
+     */
 
     private static final String PARTIAL_URL
             = "http://cssgate.insttech.washington.edu/" +
@@ -33,6 +46,9 @@ public class VerifyFragment extends Fragment {
         // Required empty public constructor
     }
 
+    /*
+     * Creates the fragment and sets the click listeners.
+     */
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
@@ -59,6 +75,10 @@ public class VerifyFragment extends Fragment {
 
         return view;
     }
+    
+    /*
+     * Web service task that calls the registerPermanent php script.
+     */
 
     private class GetWebServiceTaskRegister extends AsyncTask<String, Void, String> {
         private final String SERVICE = "registerPermanent.php";
