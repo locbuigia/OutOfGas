@@ -21,12 +21,32 @@ import java.io.InputStreamReader;
 import java.net.HttpURLConnection;
 import java.net.URL;
 
+/*
+ * This is the activity that comes active when the user selects the 
+ * forgot password option. It will get their other credentials and send an
+ * email to inform them of their password.
+ */
+
 public class ForgotPasswordActivity extends AppCompatActivity {
+    
+    /*
+     * Edittext fields for the name, username, and email of the person.
+     */ 
+    
     private EditText fullname, username, email;
+    
+    /*
+     * Partial url for access to the database.
+     */
 
     private static final String PARTIAL_URL
             = "http://cssgate.insttech.washington.edu/" +
             "~locbui/";
+    
+    /*
+     * Creates the activity and adds click listeners.
+     */
+    
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -59,6 +79,10 @@ public class ForgotPasswordActivity extends AppCompatActivity {
             }
         });
     }
+    
+    /*
+     * Web service task that calls the forgotPassword php script.
+     */
 
     private class GetWebServiceTask extends AsyncTask<String, Void, String> {
         private final String SERVICE = "forgotPassword.php";
