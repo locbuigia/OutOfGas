@@ -23,15 +23,43 @@ import java.net.HttpURLConnection;
 import java.net.URL;
 import java.util.Random;
 
+/*
+ * This is the activity that comes active when the user wants to
+ * register for the application.
+ */
+
 public class RegisterActivity extends AppCompatActivity {
+    
+     /*
+     * Edittext fields for the name, username, password, the confirmation password, 
+     * and email of the person.
+     */ 
 
     private EditText fullname, username, password, passwordConfirm, email;
+    
+    /*
+     * The string for the verify code.
+     */
+    
     private String verifyCodeStr;
+    
+    /*
+     * The integer of the verify code.
+     */
+    
     private int verifyCode;
+    
+    /*
+     * Partial url for access to the database.
+     */
 
     private static final String PARTIAL_URL
             = "http://cssgate.insttech.washington.edu/" +
             "~locbui/";
+    
+    /*
+     * Creates the register activity and sets the click listeners.
+     */
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -92,6 +120,10 @@ public class RegisterActivity extends AppCompatActivity {
             }
         });
     }
+    
+    /*
+     * Web service task that calls the registerApp php script.
+     */
 
     private class GetWebServiceTaskRegister extends AsyncTask<String, Void, String> {
         private final String SERVICE = "registerApp.php";
@@ -142,6 +174,10 @@ public class RegisterActivity extends AppCompatActivity {
             }
         }
     }
+    
+    /*
+     * Web service task that calls the sendEmail php script.
+     */
 
     private class SendEmailWebService extends AsyncTask<String, Void, String> {
         private final String SERVICE = "sendEmail.php";
@@ -184,6 +220,10 @@ public class RegisterActivity extends AppCompatActivity {
             }
         }
     }
+    
+    /*
+     * Changes the fragment that is currently in view.
+     */
 
     private void changeFragment() {
         VerifyFragment verifyFragment = new VerifyFragment();
