@@ -22,12 +22,33 @@ import java.io.InputStreamReader;
 import java.net.HttpURLConnection;
 import java.net.URL;
 
+/*
+ * This is the activity that runs the log in activity for the user.
+ * It checks the entered username and password to see if there is a 
+ * verifies user by these credentials. This is also the activity where
+ * they may press the register or forgot password buttons to go to their
+ * related activities.
+ */
+
 public class LoginActivity extends AppCompatActivity {
+    
+    /*
+     * Edittext fields that hold the entered username and password.
+     */
+    
     private EditText username, password;
+    
+    /*
+     * Partial url for access to the database.
+     */
 
     private static final String PARTIAL_URL
             = "http://cssgate.insttech.washington.edu/" +
             "~locbui/";
+    
+    /*
+     * Creates the activity and adds click listeners.
+     */
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -57,6 +78,12 @@ public class LoginActivity extends AppCompatActivity {
             }
         });
     }
+    
+    /*
+     * Web service task that calls the loginapp php script.
+     * This checks if the user exists in the system and if they entered
+     * the correct password.
+     */
 
     private class GetWebServiceTask extends AsyncTask<String, Void, String> {
         private final String SERVICE = "loginApp.php";
@@ -107,11 +134,21 @@ public class LoginActivity extends AppCompatActivity {
             }
         }
     }
+    
+    /*
+     * If the user presses the register buttons, this will take them to the 
+     * register activity.
+     */
 
     public void registerMethod(View v) {
         Intent intent = new Intent(this, RegisterActivity.class);
         startActivity(intent);
     }
+    
+    /*
+     * If the user forgets their password, this will take them to the 
+     * forgot password activity.
+     */
 
     public void forgotPasswordMethod(View v) {
         Intent intent = new Intent(this, ForgotPasswordActivity.class);
