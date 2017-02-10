@@ -16,9 +16,21 @@ import com.google.android.gms.maps.SupportMapFragment;
 import com.google.android.gms.maps.model.LatLng;
 import com.google.android.gms.maps.model.MarkerOptions;
 
+/*
+ * This is the Google maps activity that presents a map to the user.
+ */
+
 public class MapsActivity extends FragmentActivity implements OnMapReadyCallback {
+    
+    /*
+     * The Google maps object that presents the view.
+     */
 
     private GoogleMap mMap;
+    
+    /*
+     * Creates the map fragment that is placed onto the user interface.
+     */
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -29,12 +41,17 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
                 .findFragmentById(R.id.map);
         mapFragment.getMapAsync(this);
     }
+    
+    /*
+     * Places a marker on the map when the map is ready to be viewed.
+     * This currently places a marker on UWT and centers the camera to that location.
+     */
 
     @Override
     public void onMapReady(GoogleMap googleMap) {
         mMap = googleMap;
 
-        // Add a marker in Sydney and move the camera
+        // Add a marker in UWT and move the camera
         LatLng UWT = new LatLng(47.2451, -122.438);
         mMap.addMarker(new MarkerOptions().position(UWT).title("Marker in UWT"));
         mMap.moveCamera(CameraUpdateFactory.newLatLng(UWT));
