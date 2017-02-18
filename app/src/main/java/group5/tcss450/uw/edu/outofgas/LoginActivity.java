@@ -7,12 +7,14 @@ package group5.tcss450.uw.edu.outofgas;
 
 import android.content.Intent;
 import android.os.AsyncTask;
+import android.support.v4.app.FragmentTransaction;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.Gravity;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.RelativeLayout;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -63,7 +65,7 @@ public class LoginActivity extends AppCompatActivity {
             @Override
             public void onClick(View v) {
 
-                AsyncTask<String, Void, String> task = null;
+                AsyncTask<String, Void, String> task;
                 String theUsername = username.getText().toString();
                 String thePassword = password.getText().toString();
 
@@ -102,7 +104,7 @@ public class LoginActivity extends AppCompatActivity {
                 urlConnection = (HttpURLConnection) urlObject.openConnection();
                 InputStream content = urlConnection.getInputStream();
                 BufferedReader buffer = new BufferedReader(new InputStreamReader(content));
-                String s = "";
+                String s;
                 while ((s = buffer.readLine()) != null) {
                     response += s;
                 }
@@ -153,5 +155,16 @@ public class LoginActivity extends AppCompatActivity {
     public void forgotPasswordMethod(View v) {
         Intent intent = new Intent(this, ForgotPasswordActivity.class);
         startActivity(intent);
+    }
+
+    public void verifyAccount(View v) {
+        VerifyFragment verifyFragment = new VerifyFragment();
+        FragmentTransaction transaction = getSupportFragmentManager().beginTransaction();
+        transaction.setCustomAnimations(R.anim.enter_from_right, R.anim.exit_to_left,
+                R.anim.enter_from_left, R.anim.exit_to_right);
+        transaction.replace(R.id.activity_login, verifyFragment);
+        transaction.addToBackStack(null);
+        // Commit the transaction
+        transaction.commit();
     }
 }
