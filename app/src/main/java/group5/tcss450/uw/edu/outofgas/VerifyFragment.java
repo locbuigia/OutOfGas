@@ -9,11 +9,13 @@ import android.content.Intent;
 import android.os.AsyncTask;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
+import android.view.Gravity;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.TextView;
 import android.widget.Toast;
 
 import java.io.BufferedReader;
@@ -121,7 +123,11 @@ public class VerifyFragment extends Fragment {
                 Intent intent = new Intent(getActivity(), MapsActivity.class);
                 startActivity(intent);
             } else {
-                Toast.makeText(getActivity(), "Register Failed! Please check your code!", Toast.LENGTH_LONG).show();
+                String message = "Invalid code or you account has been registered already!";
+                Toast toast = Toast.makeText(getActivity(), message, Toast.LENGTH_LONG);
+                TextView v = (TextView) toast.getView().findViewById(android.R.id.message);
+                if (v != null) v.setGravity(Gravity.CENTER);
+                toast.show();
             }
         }
     }
