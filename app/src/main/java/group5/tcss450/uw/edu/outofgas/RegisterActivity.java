@@ -33,20 +33,20 @@ public class RegisterActivity extends AppCompatActivity {
      /*
      * Edittext fields for the name, username, password, the confirmation password, 
      * and email of the person.
-     */ 
+     */
 
     private EditText fullname, username, password, passwordConfirm, email;
     
     /*
      * The string for the verify code.
      */
-    
+
     private String verifyCodeStr;
     
     /*
      * The integer of the verify code.
      */
-    
+
     private int verifyCode;
     
     /*

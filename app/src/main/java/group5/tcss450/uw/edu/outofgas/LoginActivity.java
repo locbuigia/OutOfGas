@@ -37,7 +37,7 @@ public class LoginActivity extends AppCompatActivity {
     /*
      * Edittext fields that hold the entered username and password.
      */
-    
+
     private EditText username, password;
     
     /*
