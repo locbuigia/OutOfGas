@@ -1,6 +1,7 @@
 package group5.tcss450.uw.edu.outofgas;
 
 import android.Manifest;
+import android.content.Intent;
 import android.content.pm.PackageManager;
 import android.location.Location;
 import android.os.Build;
@@ -28,9 +29,7 @@ import com.google.android.gms.maps.model.LatLng;
 import com.google.android.gms.maps.model.Marker;
 import com.google.android.gms.maps.model.MarkerOptions;
 
-import java.util.HashMap;
-import java.util.List;
-
+import group5.tcss450.uw.edu.outofgas.model.DataParser;
 import group5.tcss450.uw.edu.outofgas.model.GetNearbyPlacesData;
 
 public class MapsActivity extends FragmentActivity implements OnMapReadyCallback,
@@ -105,19 +104,55 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
 
         Button btnRestaurant = (Button) findViewById(R.id.btnGas);
         btnRestaurant.setOnClickListener(new View.OnClickListener() {
-            String Restaurant = "gas_station";
+            String gasStation = "gas_station";
             @Override
             public void onClick(View v) {
                 mMap.clear();
-                String url = getUrl(latitude, longitude, Restaurant);
+                String url = getUrl(latitude, longitude, gasStation);
+                final Location current = new Location("current");
+                current.setLatitude(latitude);
+                current.setLongitude(longitude);
                 Object[] DataTransfer = new Object[2];
                 DataTransfer[0] = mMap;
                 DataTransfer[1] = url;
-                GetNearbyPlacesData getNearbyPlacesData = new GetNearbyPlacesData();
+                final GetNearbyPlacesData getNearbyPlacesData = new GetNearbyPlacesData();
                 getNearbyPlacesData.execute(DataTransfer);
                 Toast.makeText(MapsActivity.this,"Nearby Gas Stations", Toast.LENGTH_LONG).show();
+                mMap.setOnInfoWindowClickListener(new GoogleMap.OnInfoWindowClickListener() {
+                    @Override
+                    public void onInfoWindowClick(Marker marker) {
+                        DataParser dp;
+                        dp = getNearbyPlacesData.mList.get(getNearbyPlacesData.mPubMarkerMap.get(marker));
+                        Intent intent = new Intent(getApplication(), DetailActivity.class);
+
+                        Location desti = new Location("Destination");
+                        desti.setLatitude(Double.parseDouble(dp.getLat()));
+                        desti.setLongitude(Double.parseDouble(dp.getLng()));
+
+                        float distanceInMeter = current.distanceTo(desti);
+                        double distanceInMiles = getMiles(distanceInMeter);
+
+
+                        intent.putExtra("name", dp.getName());
+                        intent.putExtra("vicinity", dp.getVicinity());
+                        intent.putExtra("price", dp.getPriceLevel());
+                        intent.putExtra("rating", dp.getRating());
+                        intent.putExtra("distance", distanceInMiles);
+
+                        startActivity(intent);
+                    }
+                });
             }
         });
+    }
+
+    /**
+     * Helper method to convert meters to miles.
+     * @param meters
+     * @return distance in miles
+     */
+    private double getMiles(float meters) {
+        return meters*0.000621371192;
     }
 
     protected synchronized void buildGoogleApiClient() {
