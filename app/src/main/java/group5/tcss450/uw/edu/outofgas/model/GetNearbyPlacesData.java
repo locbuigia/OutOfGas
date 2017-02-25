@@ -3,35 +3,30 @@ package group5.tcss450.uw.edu.outofgas.model;
 import android.os.AsyncTask;
 import android.util.Log;
 
-import com.google.android.gms.maps.CameraUpdateFactory;
 import com.google.android.gms.maps.GoogleMap;
-import com.google.android.gms.maps.model.BitmapDescriptorFactory;
 import com.google.android.gms.maps.model.LatLng;
 import com.google.android.gms.maps.model.Marker;
 import com.google.android.gms.maps.model.MarkerOptions;
-
-import org.json.JSONObject;
 
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 
-import group5.tcss450.uw.edu.outofgas.MapsActivity;
 
 /**
  * Created by navneet on 23/7/16.
  */
 public class GetNearbyPlacesData extends AsyncTask<Object, String, String>{
 
-    String googlePlacesData;
-    GoogleMap mMap;
-    String url;
-    public double lat;
-    public double lng;
-    public String name;
-    public String vicinity;
-    public double rating;
-    public int priceLevel;
+    private String googlePlacesData;
+    private GoogleMap mMap;
+    private String url;
+    private double lat;
+    private double lng;
+    private String name;
+    private String vicinity;
+    private double rating;
+    private int priceLevel;
     public List<DataParser> mList;
     public HashMap<Marker, Integer> mPubMarkerMap = new HashMap<>();
 
@@ -53,14 +48,14 @@ public class GetNearbyPlacesData extends AsyncTask<Object, String, String>{
     @Override
     protected void onPostExecute(String result) {
         Log.d("GooglePlacesReadTask", "onPostExecute Entered");
-        List<DataParser> nearbyPlacesList = null;
+        List<DataParser> nearbyPlacesList;
         DataParser dataParser = new DataParser();
         nearbyPlacesList =  dataParser.parse(result);
         showNearbyPlaces(nearbyPlacesList);
         Log.d("GooglePlacesReadTask", "onPostExecute Exit");
     }
 
-    public void showNearbyPlaces(List<DataParser> nearbyPlacesList) {
+    private void showNearbyPlaces(List<DataParser> nearbyPlacesList) {
         mList = new ArrayList<>();
         for (int i = 0; i < nearbyPlacesList.size(); i++) {
             Log.d("onPostExecute","Entered into showing locations");

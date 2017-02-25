@@ -157,6 +157,11 @@ public class LoginActivity extends AppCompatActivity {
         startActivity(intent);
     }
 
+    /**
+     * If the user already created an account but did not verify it yet.
+     * This method will take them to the verify fragment.
+     * @param v View
+     */
     public void verifyAccount(View v) {
         VerifyFragment verifyFragment = new VerifyFragment();
         FragmentTransaction transaction = getSupportFragmentManager().beginTransaction();
