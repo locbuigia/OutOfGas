@@ -39,7 +39,7 @@ public class LoginActivity extends AppCompatActivity {
      */
 
     private EditText username, password;
-    
+
     /*
      * Partial url for access to the database.
      */
@@ -47,7 +47,7 @@ public class LoginActivity extends AppCompatActivity {
     private static final String PARTIAL_URL
             = "http://cssgate.insttech.washington.edu/" +
             "~locbui/";
-    
+
     /*
      * Creates the activity and adds click listeners.
      */
@@ -80,7 +80,7 @@ public class LoginActivity extends AppCompatActivity {
             }
         });
     }
-    
+
     /*
      * Web service task that calls the loginapp php script.
      * This checks if the user exists in the system and if they entered
@@ -136,9 +136,9 @@ public class LoginActivity extends AppCompatActivity {
             }
         }
     }
-    
+
     /*
-     * If the user presses the register buttons, this will take them to the 
+     * If the user presses the register buttons, this will take them to the
      * register activity.
      */
 
@@ -146,9 +146,9 @@ public class LoginActivity extends AppCompatActivity {
         Intent intent = new Intent(this, RegisterActivity.class);
         startActivity(intent);
     }
-    
+
     /*
-     * If the user forgets their password, this will take them to the 
+     * If the user forgets their password, this will take them to the
      * forgot password activity.
      */
 
