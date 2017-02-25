@@ -16,8 +16,8 @@
         tools:context="group5.tcss450.uw.edu.outofgas.MapsActivity" />
 
     <Button
-    android:id="@+id/btnGas"
-    android:layout_width="wrap_content"
-    android:layout_height="wrap_content"
-    android:text="Nearby Gas Station" />
+        android:id="@+id/btnGas"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Nearby Gas Station" />
 </FrameLayout>

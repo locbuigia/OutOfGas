@@ -15,6 +15,16 @@ import java.util.List;
  * Created by navneet on 23/7/16.
  */
 public class DataParser {
+
+    private String mName;
+
+    public DataParser(String theName) {
+        mName = theName;
+    }
+
+    public DataParser() {
+    }
+
     public List<HashMap<String, String>> parse(String jsonData) {
         JSONArray jsonArray = null;
         JSONObject jsonObject;
@@ -81,5 +91,9 @@ public class DataParser {
             e.printStackTrace();
         }
         return googlePlaceMap;
+    }
+
+    public String getName() {
+        return mName;
     }
 }

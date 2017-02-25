@@ -31,8 +31,8 @@ public class ForgotPasswordActivity extends AppCompatActivity {
     
     /*
      * Edittext fields for the name, username, and email of the person.
-     */ 
-    
+     */
+
     private EditText fullname, username, email;
     
     /*
@@ -46,7 +46,7 @@ public class ForgotPasswordActivity extends AppCompatActivity {
     /*
      * Creates the activity and adds click listeners.
      */
-    
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);

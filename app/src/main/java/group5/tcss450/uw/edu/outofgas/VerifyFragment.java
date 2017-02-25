@@ -33,7 +33,7 @@ public class VerifyFragment extends Fragment {
     /*
      * Edittext field for the verifcation code.
      */
-    
+
     private EditText verifyCode;
     
     /*
