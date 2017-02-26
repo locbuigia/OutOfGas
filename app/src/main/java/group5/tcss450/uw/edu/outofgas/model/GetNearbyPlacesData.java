@@ -4,6 +4,8 @@ import android.os.AsyncTask;
 import android.util.Log;
 
 import com.google.android.gms.maps.GoogleMap;
+import com.google.android.gms.maps.model.BitmapDescriptor;
+import com.google.android.gms.maps.model.BitmapDescriptorFactory;
 import com.google.android.gms.maps.model.LatLng;
 import com.google.android.gms.maps.model.Marker;
 import com.google.android.gms.maps.model.MarkerOptions;
@@ -11,6 +13,8 @@ import com.google.android.gms.maps.model.MarkerOptions;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
+
+import group5.tcss450.uw.edu.outofgas.R;
 
 
 /**
@@ -72,6 +76,7 @@ public class GetNearbyPlacesData extends AsyncTask<Object, String, String>{
             mList.add(dataParser);
             markerOptions.position(new LatLng(lat,lng));
             markerOptions.title(dataParser.getName());
+            markerOptions.icon(BitmapDescriptorFactory.fromResource(R.drawable.gas));
             Marker mark = mMap.addMarker(markerOptions);
             mPubMarkerMap.put(mark, i);
         }

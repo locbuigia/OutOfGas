@@ -2,6 +2,7 @@
 <FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
     android:id="@+id/activity_login"
+    android:layout_gravity="center_horizontal"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="@drawable/camaro"
@@ -12,63 +13,18 @@
         android:layout_width="match_parent"
         android:layout_height="match_parent">
 
-        <EditText
-            android:layout_height="40dp"
-            android:id="@+id/username"
-            android:hint="@string/username_hint"
-            android:textColorHint="@color/white"
-            android:textColor="@color/white"
-            android:gravity="center"
-            android:layout_marginTop="44dp"
-            android:background="@color/wallet_dim_foreground_inverse_disabled_holo_dark"
-            android:layout_alignParentTop="true"
-            android:layout_centerHorizontal="true"
-            android:layout_width="350dp" />
-
-        <EditText
-            android:layout_height="40dp"
-            android:id="@+id/password"
-            android:hint="@string/password_hint"
-            android:textColorHint="@color/white"
-            android:gravity="center"
-            android:inputType="textPassword"
-            android:textColor="@color/white"
-            android:layout_marginTop="31dp"
-            android:background="@color/wallet_dim_foreground_inverse_disabled_holo_dark"
-            android:layout_below="@+id/username"
-            android:layout_alignLeft="@+id/username"
-            android:layout_alignStart="@+id/username"
-            android:layout_width="350dp" />
-
-        <Button
-            android:text="@string/register"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:id="@+id/registerButton"
-            android:onClick="registerMethod"
-            android:layout_marginRight="24dp"
-            android:layout_marginEnd="24dp"
-            android:background="@drawable/my_button"
-            android:padding="10dp"
-            android:textColor="#ffffff"
-            android:layout_alignBaseline="@+id/loginButton"
-            android:layout_alignBottom="@+id/loginButton"
-            android:layout_alignRight="@+id/password"
-            android:layout_alignEnd="@+id/password" />
-
         <TextView
             android:text="Forgot your password?"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginTop="15dp"
+            android:layout_marginTop="18dp"
             android:id="@+id/forgetPasswordTextView"
             android:onClick="forgotPasswordMethod"
             android:textColor="@color/colorPrimaryDark"
             android:textStyle="italic"
             android:textSize="20dp"
             android:layout_below="@+id/password"
-            android:layout_alignRight="@+id/password"
-            android:layout_alignEnd="@+id/password" />
+            android:layout_alignStart="@+id/password" />
 
         <TextView
             android:text="Verify your account"
@@ -79,9 +35,55 @@
             android:textColor="@color/colorPrimaryDark"
             android:textStyle="italic"
             android:textSize="20dp"
+            android:layout_marginTop="14dp"
             android:layout_below="@+id/forgetPasswordTextView"
-            android:layout_alignEnd="@+id/forgetPasswordTextView"
-            android:layout_marginTop="13dp" />
+            android:layout_alignStart="@+id/forgetPasswordTextView" />
+
+        <EditText
+            android:id="@+id/username"
+            android:gravity="center_vertical"
+            android:drawableStart="@drawable/user"
+            android:hint="@string/username_hint"
+            android:padding="10dp"
+            android:textColorHint="@color/white"
+            android:textColor="@color/white"
+            android:layout_marginTop="44dp"
+            android:background="@color/wallet_dim_foreground_inverse_disabled_holo_dark"
+            android:layout_alignParentTop="true"
+            android:layout_centerHorizontal="true"
+            android:layout_width="320dp"
+            android:layout_height="40dp" />
+
+        <EditText
+            android:layout_height="40dp"
+            android:gravity="center_vertical"
+            android:drawableStart="@drawable/lock"
+            android:padding="10dp"
+            android:id="@+id/password"
+            android:hint="@string/password_hint"
+            android:textColorHint="@color/white"
+            android:inputType="textPassword"
+            android:textColor="@color/white"
+            android:layout_marginTop="31dp"
+            android:background="@color/wallet_dim_foreground_inverse_disabled_holo_dark"
+            android:layout_below="@+id/username"
+            android:layout_centerHorizontal="true"
+            android:layout_width="320dp" />
+
+        <Button
+            android:text="@string/register"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:id="@+id/registerButton"
+            android:onClick="registerMethod"
+            android:layout_marginRight="24dp"
+            android:background="@drawable/my_button"
+            android:padding="10dp"
+            android:textColor="#ffffff"
+            android:layout_marginEnd="12dp"
+            android:layout_alignBaseline="@+id/loginButton"
+            android:layout_alignBottom="@+id/loginButton"
+            android:layout_alignEnd="@+id/password" />
 
         <Button
             android:layout_width="wrap_content"
@@ -92,10 +94,10 @@
             android:padding="10dp"
             android:textColor="#ffffff"
             android:layout_marginRight="24dp"
-            android:layout_marginEnd="20dp"
-            android:layout_marginTop="18dp"
+            android:layout_marginTop="21dp"
+            android:layout_marginStart="13dp"
             android:layout_below="@+id/verifyCodeText"
-            android:layout_toStartOf="@+id/registerButton" />
+            android:layout_alignStart="@+id/verifyCodeText" />
     </RelativeLayout>
 
 </FrameLayout>

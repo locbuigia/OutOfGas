@@ -26,7 +26,6 @@
         <EditText
             android:layout_width="350dp"
             android:layout_height="40dp"
-            android:inputType="textPersonName"
             android:ems="10"
             android:id="@+id/verifyCodeText"
             android:hint="Your Verification Code"
@@ -36,7 +35,8 @@
             android:background="@color/wallet_dim_foreground_inverse_disabled_holo_dark"
             android:layout_marginTop="27dp"
             android:layout_below="@+id/textView10"
-            android:layout_centerHorizontal="true" />
+            android:layout_centerHorizontal="true"
+            android:inputType="number" />
 
         <TextView
             android:text="Please enter your verification code we've sent to your email address"
