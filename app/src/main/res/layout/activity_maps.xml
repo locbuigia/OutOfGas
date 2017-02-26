@@ -6,11 +6,28 @@
     android:gravity="center_horizontal"
     tools:context="group5.tcss450.uw.edu.outofgas.LoginActivity">
 
+    <android.support.design.widget.AppBarLayout
+        android:gravity="right"
+        android:layout_width="match_parent"
+        android:layout_height="40dp">
+
+        <TextView
+            android:layout_marginTop="6dp"
+            android:layout_marginEnd="15dp"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Sign Out"
+            android:textSize="20dp"
+            android:textColor="@color/white"
+            android:onClick="signOutMethod"/>
+
+
+    </android.support.design.widget.AppBarLayout>
+
     <RelativeLayout
         android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
+        android:layout_height="620dp"
         android:layout_gravity="bottom">
-
 
         <fragment xmlns:android="http://schemas.android.com/apk/res/android"
             xmlns:tools="http://schemas.android.com/tools"
