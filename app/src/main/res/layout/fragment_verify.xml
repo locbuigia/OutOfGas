@@ -11,17 +11,43 @@
         android:layout_height="match_parent"
         android:clickable="true">
 
+        <TextView
+            android:text="Please enter your username and your verification code we've sent to your email address"
+            android:layout_height="wrap_content"
+            android:gravity="center"
+            android:textColor="@color/colorPrimaryDark"
+            android:textSize="20dp"
+            android:id="@+id/textView10"
+            android:layout_marginTop="31dp"
+            android:layout_width="370dp"
+            android:layout_alignParentTop="true"
+            android:layout_centerHorizontal="true" />
+
         <Button
             android:text="Verify"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginTop="19dp"
             android:id="@+id/verifyButton"
-            android:layout_below="@+id/verifyCodeText"
-            android:layout_centerHorizontal="true"
             android:background="@drawable/my_button"
             android:padding="10dp"
-            android:textColor="#ffffff"/>
+            android:textColor="#ffffff"
+            android:layout_centerVertical="true"
+            android:layout_centerHorizontal="true" />
+
+        <EditText
+            android:layout_width="350dp"
+            android:layout_height="40dp"
+            android:inputType="textPersonName"
+            android:ems="10"
+            android:textColorHint="@color/white"
+            android:textColor="@color/white"
+            android:gravity="center"
+            android:background="@color/wallet_dim_foreground_inverse_disabled_holo_dark"
+            android:id="@+id/usernameVerify"
+            android:layout_above="@+id/verifyCodeText"
+            android:layout_alignStart="@+id/verifyCodeText"
+            android:layout_marginBottom="17dp"
+            android:hint="Your Username" />
 
         <EditText
             android:layout_width="350dp"
@@ -33,21 +59,9 @@
             android:textColor="@color/white"
             android:gravity="center"
             android:background="@color/wallet_dim_foreground_inverse_disabled_holo_dark"
-            android:layout_marginTop="27dp"
-            android:layout_below="@+id/textView10"
-            android:layout_centerHorizontal="true"
-            android:inputType="number" />
-
-        <TextView
-            android:text="Please enter your verification code we've sent to your email address"
-            android:layout_height="wrap_content"
-            android:gravity="center"
-            android:textColor="@color/colorPrimaryDark"
-            android:textSize="20dp"
-            android:id="@+id/textView10"
-            android:layout_marginTop="31dp"
-            android:layout_width="370dp"
-            android:layout_alignParentTop="true"
+            android:inputType="number"
+            android:layout_marginBottom="22dp"
+            android:layout_above="@+id/verifyButton"
             android:layout_centerHorizontal="true" />
 
     </RelativeLayout>

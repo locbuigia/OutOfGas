@@ -115,7 +115,7 @@ public class RegisterActivity extends AppCompatActivity {
                     email.setError("Please enter email");
                 } else {
                     task.execute(PARTIAL_URL, theFullName, theUsername, thePassword, theEmail, verifyCodeStr);
-                    sendEmailTask.execute(PARTIAL_URL, theEmail, verifyCodeStr);
+                    sendEmailTask.execute(PARTIAL_URL, theEmail, verifyCodeStr, theUsername);
                 }
             }
         });
@@ -183,16 +183,17 @@ public class RegisterActivity extends AppCompatActivity {
         private final String SERVICE = "sendEmail.php";
         @Override
         protected String doInBackground(String... strings) {
-            if (strings.length != 3) {
-                throw new IllegalArgumentException("Three String arguments required.");
+            if (strings.length != 4) {
+                throw new IllegalArgumentException("Four String arguments required.");
             }
             String response = "";
             HttpURLConnection urlConnection = null;
             String url = strings[0];
             String arg0 = "?email=" + strings[1];
             String arg1 = "&code=" + strings[2];
+            String arg2 = "&user_name=" + strings[3];
             try {
-                URL urlObject = new URL(url + SERVICE + arg0 + arg1);
+                URL urlObject = new URL(url + SERVICE + arg0 + arg1 + arg2);
                 urlConnection = (HttpURLConnection) urlObject.openConnection();
                 InputStream content = urlConnection.getInputStream();
                 BufferedReader buffer = new BufferedReader(new InputStreamReader(content));

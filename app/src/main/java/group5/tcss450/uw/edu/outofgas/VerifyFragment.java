@@ -35,6 +35,7 @@ public class VerifyFragment extends Fragment {
      */
 
     private EditText verifyCode;
+    private EditText verifyUsername;
     
     /*
      * Partial url for access to the database.
@@ -58,6 +59,7 @@ public class VerifyFragment extends Fragment {
         // Inflate the layout for this fragment
         View view = inflater.inflate(R.layout.fragment_verify, container, false);
         verifyCode = (EditText) view.findViewById(R.id.verifyCodeText);
+        verifyUsername = (EditText) view.findViewById(R.id.usernameVerify);
 
         Button verifyAccount = (Button) view.findViewById(R.id.verifyButton);
         verifyAccount.setOnClickListener(new View.OnClickListener() {
@@ -66,11 +68,15 @@ public class VerifyFragment extends Fragment {
             public void onClick(View v) {
                 AsyncTask<String, Void, String> task = null;
                 String verifyCodeString = verifyCode.getText().toString();
+                String verifyUsernameString = verifyUsername.getText().toString();
+
                 task = new GetWebServiceTaskRegister();
                 if (verifyCode.getText().toString().equalsIgnoreCase("")) {
                     verifyCode.setError("Please enter your verify code");
+                } else if (verifyUsername.getText().toString().equalsIgnoreCase("")) {
+                    verifyUsername.setError("Please enter your username");
                 } else {
-                    task.execute(PARTIAL_URL, verifyCodeString);
+                    task.execute(PARTIAL_URL, verifyCodeString, verifyUsernameString);
                 }
             }
         });
@@ -86,15 +92,16 @@ public class VerifyFragment extends Fragment {
         private final String SERVICE = "registerPermanent.php";
         @Override
         protected String doInBackground(String... strings) {
-            if (strings.length != 2) {
-                throw new IllegalArgumentException("Two String arguments required.");
+            if (strings.length != 3) {
+                throw new IllegalArgumentException("Three String arguments required.");
             }
             String response = "";
             HttpURLConnection urlConnection = null;
             String url = strings[0];
             String arg0 = "?verify=" + strings[1];
+            String arg1 = "&username=" + strings[2];
             try {
-                URL urlObject = new URL(url + SERVICE + arg0);
+                URL urlObject = new URL(url + SERVICE + arg0 + arg1);
                 urlConnection = (HttpURLConnection) urlObject.openConnection();
                 InputStream content = urlConnection.getInputStream();
                 BufferedReader buffer = new BufferedReader(new InputStreamReader(content));
