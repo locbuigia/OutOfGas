@@ -18,6 +18,8 @@ import java.io.InputStream;
 import java.io.InputStreamReader;
 import java.net.HttpURLConnection;
 import java.net.URL;
+import java.text.SimpleDateFormat;
+import java.util.Date;
 
 public class CommentActivity extends AppCompatActivity implements View.OnClickListener{
 
@@ -41,7 +43,7 @@ public class CommentActivity extends AppCompatActivity implements View.OnClickLi
 
         AsyncTask<String, Void, String> task;
         String address = getIntent().getSerializableExtra("address").toString();
-        address.replace(" ", "+");
+        URLString(address);
 
         task = new loadCommentTask();
         task.execute(PARTIAL_URL, address);
@@ -58,9 +60,9 @@ public class CommentActivity extends AppCompatActivity implements View.OnClickLi
 
             saveCommentTask task = new saveCommentTask();
             String address = getIntent().getSerializableExtra("address").toString();
-            address.replace(' ', '+');
             String comment = commentBox.getText().toString();
-            comment = comment.replace(' ', '+');
+            URLString(address);
+            URLString(comment);
             commentBox.setText(" ");
             task.execute(PARTIAL_URL, address, comment);
         } else {
@@ -129,14 +131,14 @@ public class CommentActivity extends AppCompatActivity implements View.OnClickLi
             if (strings.length != 3) {
                 throw new IllegalArgumentException("Six String arguments required.");
             }
-            
+            String date = new SimpleDateFormat("MM/dd/yyyy").format(new Date());
             String response = "";
             HttpURLConnection urlConnection = null;
             String url = strings[0];
             String arg0 = "?inputAddress=" + strings[1];
             String arg1 = "&comment="+
                     getIntent().getSerializableExtra("username").toString() +
-                     "+("+ SystemClock.currentThreadTimeMillis() + "):+" + strings[2];
+                     "+("+ date + "):+" + strings[2];
             try {
                 URL urlObject = new URL(url + SERVICE + arg0 + arg1);
                 urlConnection = (HttpURLConnection) urlObject.openConnection();
@@ -172,5 +174,11 @@ public class CommentActivity extends AppCompatActivity implements View.OnClickLi
                 Toast.makeText(getApplication(), result, Toast.LENGTH_LONG).show();
             }
         }
+    }
+
+    private String URLString (String str){
+        str = str.replace(' ', '+')
+        .replace("\'", "\\'");
+        return str;
     }
 }
