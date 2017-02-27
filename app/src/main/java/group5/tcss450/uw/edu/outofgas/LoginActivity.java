@@ -33,6 +33,8 @@ import java.net.URL;
  */
 
 public class LoginActivity extends AppCompatActivity {
+
+    static String user = "";
     
     /*
      * Edittext fields that hold the entered username and password.
@@ -75,6 +77,7 @@ public class LoginActivity extends AppCompatActivity {
                 } else if (password.getText().toString().trim().equalsIgnoreCase("")) {
                     password.setError("Please enter password");
                 } else {
+                    user = theUsername;
                     task.execute(PARTIAL_URL, theUsername, thePassword);
                 }
             }
@@ -99,6 +102,7 @@ public class LoginActivity extends AppCompatActivity {
             String url = strings[0];
             String arg1 = "?user_name=" + strings[1];
             String arg2 = "&pass_word=" + strings[2];
+
             try {
                 URL urlObject = new URL(url + SERVICE + arg1 + arg2);
                 urlConnection = (HttpURLConnection) urlObject.openConnection();

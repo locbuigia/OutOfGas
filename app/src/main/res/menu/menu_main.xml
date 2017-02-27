@@ -1,0 +1,19 @@
+<menu xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    tools:context="group5.tcss450.uw.edu.outofgas.DetailActivity">
+
+    <item
+        android:id="@+id/comment"
+        android:orderInCategory="100"
+        android:title="Comment"
+        app:showAsAction="always" />
+
+    <item
+        android:id="@+id/signOut"
+        android:orderInCategory="100"
+        android:title="Sign Out"
+        app:showAsAction="never" />
+
+
+</menu>

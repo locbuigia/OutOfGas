@@ -1,7 +1,10 @@
 package group5.tcss450.uw.edu.outofgas;
 
+import android.content.Intent;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.view.Menu;
+import android.view.MenuItem;
 import android.widget.TextView;
 
 import java.text.DecimalFormat;
@@ -33,5 +36,30 @@ public class DetailActivity extends AppCompatActivity {
         String distance = getIntent().getSerializableExtra("distance").toString();
         double distanceInNum = Double.parseDouble(distance);
         distanceTv.setText(new DecimalFormat("##.##").format(distanceInNum));
+    }
+
+    @Override
+    public boolean onCreateOptionsMenu(Menu menu) {
+        // Inflate the menu; this adds items to the action bar if it is present.
+        getMenuInflater().inflate(R.menu.menu_main, menu);
+        return true;
+    }
+
+    @Override
+    public boolean onOptionsItemSelected(MenuItem item) {
+        int id = item.getItemId();
+
+        if (id == R.id.comment) {
+            Intent intent = new Intent(getApplication(), CommentActivity.class);
+            intent.putExtra("address", getIntent().getSerializableExtra("vicinity"));
+            intent.putExtra("username", LoginActivity.user);
+            intent.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
+            startActivity(intent);
+        } else if (id == R.id.signOut) {
+            Intent intent = new Intent(getApplication(), LoginActivity.class);
+            intent.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
+            startActivity(intent);
+        }
+        return true;
     }
 }
