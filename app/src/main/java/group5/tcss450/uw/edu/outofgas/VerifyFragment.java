@@ -75,6 +75,8 @@ public class VerifyFragment extends Fragment {
                     verifyCode.setError("Please enter your verify code");
                 } else if (verifyUsername.getText().toString().equalsIgnoreCase("")) {
                     verifyUsername.setError("Please enter your username");
+                } else if (verifyUsername.getText().toString().contains("'")) {
+                    verifyUsername.setError("Username cannot contain special character");
                 } else {
                     task.execute(PARTIAL_URL, verifyCodeString, verifyUsernameString);
                 }

@@ -76,6 +76,10 @@ public class LoginActivity extends AppCompatActivity {
                     username.setError("Please enter username");
                 } else if (password.getText().toString().trim().equalsIgnoreCase("")) {
                     password.setError("Please enter password");
+                } else if (username.getText().toString().contains("'")) {
+                    username.setError("Username cannot contain special character");
+                } else if (password.getText().toString().contains("'")) {
+                    password.setError("Password cannot contain special character");
                 } else {
                     user = theUsername;
                     task.execute(PARTIAL_URL, theUsername, thePassword);

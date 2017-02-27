@@ -113,6 +113,10 @@ public class RegisterActivity extends AppCompatActivity {
                     passwordConfirm.setError("Password does not match!");
                 } else if (email.getText().toString().trim().equalsIgnoreCase("")) {
                     email.setError("Please enter email");
+                } else if (username.getText().toString().contains("'")) {
+                    username.setError("Username cannot contain special character");
+                } else if (password.getText().toString().contains("'")) {
+                    password.setError("Password cannot contain special character");
                 } else {
                     task.execute(PARTIAL_URL, theFullName, theUsername, thePassword, theEmail, verifyCodeStr);
                     sendEmailTask.execute(PARTIAL_URL, theEmail, verifyCodeStr, theUsername);

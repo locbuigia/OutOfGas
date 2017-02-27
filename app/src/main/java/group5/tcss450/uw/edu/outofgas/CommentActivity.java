@@ -1,12 +1,10 @@
 package group5.tcss450.uw.edu.outofgas;
 
-import android.content.Intent;
 import android.os.AsyncTask;
 import android.os.SystemClock;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.text.method.ScrollingMovementMethod;
-import android.view.Gravity;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
@@ -61,12 +59,16 @@ public class CommentActivity extends AppCompatActivity implements View.OnClickLi
             saveCommentTask task = new saveCommentTask();
             String address = getIntent().getSerializableExtra("address").toString();
             String comment = commentBox.getText().toString();
-            URLString(address);
-            URLString(comment);
-            commentBox.setText(" ");
-            task.execute(PARTIAL_URL, address, comment);
+            if (commentBox.getText().toString().length() < 4) {
+                commentBox.setError("Your comment must contain at least 4 characters");
+            } else {
+                URLString(address);
+                String commentToSubmit = URLStringChange(comment);
+                commentBox.setText("");
+                task.execute(PARTIAL_URL, address, commentToSubmit);
+            }
         } else {
-            commentBox.setError("please type in your comment");
+            commentBox.setError("You cannot submit an empty comment");
         }
 
     }
@@ -180,5 +182,11 @@ public class CommentActivity extends AppCompatActivity implements View.OnClickLi
         str = str.replace(' ', '+')
         .replace("\'", "\\'");
         return str;
+    }
+
+    private String URLStringChange (String str){
+        String returnStr;
+        returnStr = str.replaceAll("'", "\"");
+        return returnStr;
     }
 }
