@@ -3,6 +3,7 @@ package group5.tcss450.uw.edu.outofgas;
 import android.content.Intent;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.widget.TextView;
@@ -51,10 +52,17 @@ public class DetailActivity extends AppCompatActivity {
         if (id == R.id.comment) {
             Intent intent = new Intent(getApplication(), CommentActivity.class);
             intent.putExtra("address", getIntent().getSerializableExtra("vicinity"));
-            intent.putExtra("username", LoginActivity.user);
+            if (!VerifyFragment.myVerifyUsername.equals("")) {
+                LoginActivity.user = VerifyFragment.myVerifyUsername;
+                intent.putExtra("username", LoginActivity.user);
+            } else if (!LoginActivity.user.equals("")){
+                intent.putExtra("username", LoginActivity.user);
+            }
             intent.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
             startActivity(intent);
         } else if (id == R.id.signOut) {
+            LoginActivity.user = "";
+            VerifyFragment.myVerifyUsername = "";
             Intent intent = new Intent(getApplication(), LoginActivity.class);
             intent.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
             startActivity(intent);
