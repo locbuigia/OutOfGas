@@ -37,7 +37,6 @@ public class DetailActivity extends AppCompatActivity {
         double distanceInNum = Double.parseDouble(distance);
         distanceTv.setText(new DecimalFormat("##.##").format(distanceInNum));
     }
-
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
         // Inflate the menu; this adds items to the action bar if it is present.
@@ -62,4 +61,5 @@ public class DetailActivity extends AppCompatActivity {
         }
         return true;
     }
+
 }

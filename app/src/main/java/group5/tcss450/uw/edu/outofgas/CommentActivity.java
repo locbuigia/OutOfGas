@@ -59,7 +59,7 @@ public class CommentActivity extends AppCompatActivity implements View.OnClickLi
             saveCommentTask task = new saveCommentTask();
             String address = getIntent().getSerializableExtra("address").toString();
             String comment = commentBox.getText().toString();
-            if (commentBox.getText().toString().length() < 4) {
+            if (commentBox.getText().toString().length() < 0) {
                 commentBox.setError("Your comment must contain at least 4 characters");
             } else {
                 URLString(address);
