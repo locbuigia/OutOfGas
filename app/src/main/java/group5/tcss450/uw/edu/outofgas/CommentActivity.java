@@ -133,7 +133,7 @@ public class CommentActivity extends AppCompatActivity implements View.OnClickLi
             HttpURLConnection urlConnection = null;
             String url = strings[0];
             String arg0 = "?inputAddress=" + strings[1];
-            String arg1 = "&comment="+
+            String arg1 = "&comment="+ "~" +
                     getIntent().getSerializableExtra("username").toString() +
                      "+("+ date + "):+" + strings[2];
             try {
