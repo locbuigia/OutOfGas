@@ -21,22 +21,23 @@
         <TextView
             android:layout_width="match_parent"
             android:layout_height="match_parent"
-            android:layout_marginBottom="@dimen/activity_vertical_margin"
-            android:padding="15dp"
+            android:padding="10dp"
             android:id="@+id/commentTV"
             android:textColor="@color/white"
             android:background="@drawable/custom_border"
             android:scrollbars="vertical"
             android:gravity="bottom"
+            android:textSize="17dp"
             />
     </LinearLayout>
 
     <LinearLayout
         android:orientation="horizontal"
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
+        android:layout_height="420dp"
         android:layout_weight="4"
-        android:gravity="center">
+        android:gravity="center"
+        android:background="@drawable/custom_border_comment">
 
         <EditText
             android:layout_width="match_parent"
@@ -44,20 +45,20 @@
             android:layout_weight="1"
             android:lines="5"
             android:hint="Comment..."
-            android:background="@drawable/custom_border_comment"
             android:id="@+id/commentBox"
-            android:inputType="textMultiLine"
-            android:maxLength="150"/>
+            android:inputType="textCapSentences|textMultiLine"
+            android:maxLength="150"
+            android:layout_gravity="bottom"/>
 
-        <Button
+        <TextView
             android:text="Send"
-            android:gravity="center"
-            android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:id="@+id/commentButton"
-            android:background="@drawable/my_button"
-            android:textColor="#ffffff"
-            />
+            android:id="@+id/commentSendText"
+            android:textSize="20dp"
+            android:layout_width="wrap_content"
+            android:textStyle="bold"
+            android:textColor="@color/true_blue"/>
+
     </LinearLayout>
 
 </LinearLayout>
