@@ -140,4 +140,5 @@
         android:layout_alignBaseline="@+id/vicinityTextView"
         android:layout_alignBottom="@+id/vicinityTextView"
         android:layout_alignStart="@+id/textView7" />
+
 </RelativeLayout>

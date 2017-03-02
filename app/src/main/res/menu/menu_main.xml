@@ -10,10 +10,16 @@
         app:showAsAction="always" />
 
     <item
+        android:id="@+id/save"
+        android:orderInCategory="100"
+        android:title="Save"
+
+        />
+
+    <item
         android:id="@+id/signOut"
         android:orderInCategory="100"
         android:title="Sign Out"
         app:showAsAction="never" />
-
 
 </menu>

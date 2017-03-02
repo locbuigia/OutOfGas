@@ -6,7 +6,12 @@ import android.os.Bundle;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.widget.TextView;
+import android.widget.Toast;
 
+import java.io.File;
+import java.io.FileOutputStream;
+import java.io.FileWriter;
+import java.io.InputStream;
 import java.text.DecimalFormat;
 
 public class DetailActivity extends AppCompatActivity {
@@ -59,6 +64,16 @@ public class DetailActivity extends AppCompatActivity {
             Intent intent = new Intent(getApplication(), LoginActivity.class);
             intent.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
             startActivity(intent);
+        } else if (id == R.id.save) {
+            File file = new File("Placeholder");
+            try {
+                FileWriter writer = new FileWriter(file);
+                writer.append("Hello");
+                writer.close();
+                Toast.makeText(getApplication(), "Save Successful!", Toast.LENGTH_SHORT).show();
+            } catch (Exception e) {
+                Toast.makeText(getApplication(), "Failed to Save!", Toast.LENGTH_SHORT).show();
+            }
         }
         return true;
     }
