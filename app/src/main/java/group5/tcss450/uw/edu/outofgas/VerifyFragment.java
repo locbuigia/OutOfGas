@@ -29,7 +29,7 @@ import java.net.URL;
  */
 
 public class VerifyFragment extends Fragment {
-    
+    public static String myVerifyUsername = "";
     /*
      * Edittext field for the verifcation code.
      */
@@ -78,6 +78,7 @@ public class VerifyFragment extends Fragment {
                 } else if (verifyUsername.getText().toString().contains("'")) {
                     verifyUsername.setError("Username cannot contain special character");
                 } else {
+                    myVerifyUsername = verifyUsernameString;
                     task.execute(PARTIAL_URL, verifyCodeString, verifyUsernameString);
                 }
             }

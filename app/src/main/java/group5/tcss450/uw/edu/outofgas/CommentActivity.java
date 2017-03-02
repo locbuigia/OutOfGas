@@ -1,12 +1,10 @@
 package group5.tcss450.uw.edu.outofgas;
 
 import android.os.AsyncTask;
-import android.os.SystemClock;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.text.method.ScrollingMovementMethod;
 import android.view.View;
-import android.widget.Button;
 import android.widget.EditText;
 import android.widget.TextView;
 import android.widget.Toast;
@@ -35,9 +33,10 @@ public class CommentActivity extends AppCompatActivity implements View.OnClickLi
         t = (TextView) findViewById(R.id.commentTV);
         t.setMovementMethod(new ScrollingMovementMethod());
 
-        Button b = (Button) findViewById(R.id.commentButton);
+        TextView b = (TextView) findViewById(R.id.commentSendText);
         b.setOnClickListener(this);
 
+        setTitle(getIntent().getSerializableExtra("address").toString());
 
         AsyncTask<String, Void, String> task;
         String address = getIntent().getSerializableExtra("address").toString();
@@ -45,9 +44,6 @@ public class CommentActivity extends AppCompatActivity implements View.OnClickLi
 
         task = new loadCommentTask();
         task.execute(PARTIAL_URL, address);
-
-
-       // getIntent().getSerializableExtra("username").toString());
     }
 
     @Override
@@ -59,7 +55,7 @@ public class CommentActivity extends AppCompatActivity implements View.OnClickLi
             saveCommentTask task = new saveCommentTask();
             String address = getIntent().getSerializableExtra("address").toString();
             String comment = commentBox.getText().toString();
-            if (commentBox.getText().toString().length() < 4) {
+            if (commentBox.getText().toString().length() < 0) {
                 commentBox.setError("Your comment must contain at least 4 characters");
             } else {
                 URLString(address);
@@ -70,13 +66,11 @@ public class CommentActivity extends AppCompatActivity implements View.OnClickLi
         } else {
             commentBox.setError("You cannot submit an empty comment");
         }
-
     }
 
     /*
-     * Web service task that calls the loginapp php script.
-     * This checks if the user exists in the system and if they entered
-     * the correct password.
+     * Web service task that calls the loadComment php script.
+     * Load all previous comments.
      */
 
     private class loadCommentTask extends AsyncTask<String, Void, String> {
@@ -118,14 +112,15 @@ public class CommentActivity extends AppCompatActivity implements View.OnClickLi
                 return;
             } else if (!result.isEmpty() && !result.startsWith("Unable to")) {
                 result = result.replace('~', '\n');
-                t.setText(getIntent().getSerializableExtra("address").toString() + "\n "
-                        + "-------------------------------------------" +
-                          "-------------------------------------------" +
-                        "\n" + result);
+                t.setText(result);
             }
         }
     }
 
+    /*́́
+    * Web service task that calls the saveComment php script.
+    * Save the comment that the user sent.
+    */
     private class saveCommentTask extends AsyncTask<String, Void, String> {
         private final String SERVICE = "saveComment.php";
         @Override
@@ -138,7 +133,7 @@ public class CommentActivity extends AppCompatActivity implements View.OnClickLi
             HttpURLConnection urlConnection = null;
             String url = strings[0];
             String arg0 = "?inputAddress=" + strings[1];
-            String arg1 = "&comment="+
+            String arg1 = "&comment="+ "~" +
                     getIntent().getSerializableExtra("username").toString() +
                      "+("+ date + "):+" + strings[2];
             try {
@@ -146,7 +141,7 @@ public class CommentActivity extends AppCompatActivity implements View.OnClickLi
                 urlConnection = (HttpURLConnection) urlObject.openConnection();
                 InputStream content = urlConnection.getInputStream();
                 BufferedReader buffer = new BufferedReader(new InputStreamReader(content));
-                String s = "";
+                String s;
                 while ((s = buffer.readLine()) != null) {
                     response += s;
                 }

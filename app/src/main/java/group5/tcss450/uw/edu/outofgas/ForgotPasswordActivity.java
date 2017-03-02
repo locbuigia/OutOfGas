@@ -5,6 +5,7 @@
  */
 package group5.tcss450.uw.edu.outofgas;
 
+import android.content.Intent;
 import android.os.AsyncTask;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
@@ -66,7 +67,7 @@ public class ForgotPasswordActivity extends AppCompatActivity {
                 String theFullName = fullname.getText().toString();
                 String theEmail = email.getText().toString();
 
-                task = new GetWebServiceTask();
+                task = new GetPasswordTask();
                 if (fullname.getText().toString().trim().equalsIgnoreCase("")) {
                     fullname.setError("Please enter your name");
                 } else if (username.getText().toString().trim().equalsIgnoreCase("")) {
@@ -84,7 +85,7 @@ public class ForgotPasswordActivity extends AppCompatActivity {
      * Web service task that calls the forgotPassword php script.
      */
 
-    private class GetWebServiceTask extends AsyncTask<String, Void, String> {
+    private class GetPasswordTask extends AsyncTask<String, Void, String> {
         private final String SERVICE = "forgotPassword.php";
         @Override
         protected String doInBackground(String... strings) {
@@ -132,6 +133,9 @@ public class ForgotPasswordActivity extends AppCompatActivity {
                 TextView v = (TextView) toast.getView().findViewById(android.R.id.message);
                 if (v != null) v.setGravity(Gravity.CENTER);
                 toast.show();
+                Intent intent = new Intent(getApplication(), LoginActivity.class);
+                intent.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
+                startActivity(intent);
             }
         }
     }

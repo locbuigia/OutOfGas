@@ -42,7 +42,6 @@ public class DetailActivity extends AppCompatActivity {
         double distanceInNum = Double.parseDouble(distance);
         distanceTv.setText(new DecimalFormat("##.##").format(distanceInNum));
     }
-
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
         // Inflate the menu; this adds items to the action bar if it is present.
@@ -57,10 +56,17 @@ public class DetailActivity extends AppCompatActivity {
         if (id == R.id.comment) {
             Intent intent = new Intent(getApplication(), CommentActivity.class);
             intent.putExtra("address", getIntent().getSerializableExtra("vicinity"));
-            intent.putExtra("username", LoginActivity.user);
+            if (!VerifyFragment.myVerifyUsername.equals("")) {
+                LoginActivity.user = VerifyFragment.myVerifyUsername;
+                intent.putExtra("username", LoginActivity.user);
+            } else if (!LoginActivity.user.equals("")){
+                intent.putExtra("username", LoginActivity.user);
+            }
             intent.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
             startActivity(intent);
         } else if (id == R.id.signOut) {
+            LoginActivity.user = "";
+            VerifyFragment.myVerifyUsername = "";
             Intent intent = new Intent(getApplication(), LoginActivity.class);
             intent.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
             startActivity(intent);
@@ -77,4 +83,5 @@ public class DetailActivity extends AppCompatActivity {
         }
         return true;
     }
+
 }
