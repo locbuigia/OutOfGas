@@ -104,8 +104,8 @@ public class MapsActivity extends AppCompatActivity implements OnMapReadyCallbac
             mMap.setMyLocationEnabled(true);
         }
 
-        Button btnRestaurant = (Button) findViewById(R.id.btnGas);
-        btnRestaurant.setOnClickListener(new View.OnClickListener() {
+        Button btnGas = (Button) findViewById(R.id.btnGas);
+        btnGas.setOnClickListener(new View.OnClickListener() {
             String gasStation = "gas_station";
             @Override
             public void onClick(View v) {
