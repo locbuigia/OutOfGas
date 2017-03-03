@@ -16,18 +16,22 @@ import java.text.DecimalFormat;
 
 public class DetailActivity extends AppCompatActivity {
 
+    private TextView mNameTv;
+
+    private TextView mVicinityTv;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_detail);
 
-        TextView nameTv = (TextView) findViewById(R.id.nameTextView);
+        mNameTv = (TextView) findViewById(R.id.nameTextView);
         String name = getIntent().getSerializableExtra("name").toString();
-        nameTv.setText(name);
+        mNameTv.setText(name);
 
-        TextView vicinityTv = (TextView) findViewById(R.id.vicinityTextView);
+        mVicinityTv = (TextView) findViewById(R.id.vicinityTextView);
         String vicinity = getIntent().getSerializableExtra("vicinity").toString();
-        vicinityTv.setText(vicinity);
+        mVicinityTv.setText(vicinity);
 
         TextView priceTv = (TextView) findViewById(R.id.priceTextView);
         String price = getIntent().getSerializableExtra("price").toString();
@@ -71,10 +75,14 @@ public class DetailActivity extends AppCompatActivity {
             intent.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
             startActivity(intent);
         } else if (id == R.id.save) {
-            File file = new File("Placeholder");
+            File file = new File(getFilesDir(), "SavedStations.txt");
             try {
                 FileWriter writer = new FileWriter(file);
-                writer.append("Hello");
+                writer.append("Gas Station Name: ");
+                writer.append(mNameTv.getText().toString());
+                writer.append(", Gas Station Address: ");
+                writer.append(mVicinityTv.getText().toString());
+                writer.append('\n');
                 writer.close();
                 Toast.makeText(getApplication(), "Save Successful!", Toast.LENGTH_SHORT).show();
             } catch (Exception e) {
