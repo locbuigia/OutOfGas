@@ -6,20 +6,20 @@
     <item
         android:id="@+id/comment"
         android:orderInCategory="100"
-        android:title="Comment"
+        android:title="@string/comment"
         app:showAsAction="always" />
 
     <item
         android:id="@+id/save"
         android:orderInCategory="100"
-        android:title="Save"
+        android:title="@string/save"
 
         />
 
     <item
         android:id="@+id/signOut"
         android:orderInCategory="100"
-        android:title="Sign Out"
+        android:title="@string/signout"
         app:showAsAction="never" />
 
 </menu>

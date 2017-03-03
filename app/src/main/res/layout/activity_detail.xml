@@ -14,7 +14,6 @@
 
 
     <TextView
-        android:text="TextView"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginTop="29dp"
@@ -26,7 +25,6 @@
         android:textSize="20dp"/>
 
     <TextView
-        android:text="TextView"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginTop="23dp"
@@ -38,7 +36,6 @@
         android:textSize="20dp"/>
 
     <TextView
-        android:text="TextView"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginTop="25dp"
@@ -50,7 +47,6 @@
         android:textSize="20dp"/>
 
     <TextView
-        android:text="TextView"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:id="@+id/nameTextView"
@@ -61,7 +57,7 @@
         android:textSize="20dp"/>
 
     <TextView
-        android:text="*: 0 is unknown."
+        android:text="@string/unknown"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginTop="35dp"
@@ -73,7 +69,6 @@
         android:layout_alignStart="@+id/textView15" />
 
     <TextView
-        android:text="TextView"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:id="@+id/distanceTextView"
@@ -85,7 +80,7 @@
         android:textSize="20dp"/>
 
     <TextView
-        android:text="Distance (miles):"
+        android:text="@string/distance"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:id="@+id/textView15"
@@ -96,7 +91,7 @@
         android:layout_below="@+id/textView8" />
 
     <TextView
-        android:text="Rating:*"
+        android:text="@string/rating"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:id="@+id/textView8"
@@ -108,7 +103,7 @@
         android:layout_alignStart="@+id/textView15" />
 
     <TextView
-        android:text="Price level:*"
+        android:text="@string/price_level"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:id="@+id/textView7"
@@ -119,7 +114,7 @@
         android:layout_alignBottom="@+id/priceTextView" />
 
     <TextView
-        android:text="Name:"
+        android:text="@string/name"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:id="@+id/textView5"
@@ -130,7 +125,7 @@
         android:layout_alignStart="@+id/textView7" />
 
     <TextView
-        android:text="Address:"
+        android:text="@string/address"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:id="@+id/textView6"

@@ -6,6 +6,24 @@
     <string name="password_hint">Password</string>
     <string name="title_activity_maps">Map</string>
     <string name="title_activity_details">DetailsActivity</string>
-
+    <string name="sendCommentButton">Send</string>
+    <string name="forgotPassword">Forgot your password?</string>
+    <string name="verifyYourAccount">Verify your account</string>
+    <string name="distance">Distance(miles):</string>
+    <string name="price_level">Price level:*</string>
+    <string name="name">Name:</string>
+    <string name="address">Address:</string>
+    <string name="rating">Rating:*</string>
+    <string name="unknown">*:0 is unknown</string>
+    <string name="recievePassword">Receive password</string>
+    <string name="registerAccount">Register</string>
+    <string name="nearbyGas">Nearby Gas Station</string>
+    <string name="verify">Verify</string>
+    <string name="normalMap">Normal View</string>
+    <string name="hybridMap">Hybrid View</string>
+    <string name="satleliteMap">Satellite View</string>
+    <string name="signout">Sign Out</string>
+    <string name="comment">Comment</string>
+    <string name="save">Save this place</string>
 
 </resources>

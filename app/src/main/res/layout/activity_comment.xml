@@ -51,7 +51,7 @@
             android:layout_gravity="bottom"/>
 
         <TextView
-            android:text="Send"
+            android:text="@string/sendCommentButton"
             android:layout_height="wrap_content"
             android:id="@+id/commentSendText"
             android:textSize="20dp"

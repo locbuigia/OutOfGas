@@ -14,7 +14,7 @@
         android:layout_height="match_parent">
 
         <TextView
-            android:text="Forgot your password?"
+            android:text="@string/forgotPassword"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginTop="18dp"
@@ -27,7 +27,7 @@
             android:layout_alignStart="@+id/password" />
 
         <TextView
-            android:text="Verify your account"
+            android:text="@string/verifyYourAccount"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:id="@+id/verifyCodeText"

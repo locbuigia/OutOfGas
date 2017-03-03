@@ -6,25 +6,25 @@
     <item
         android:id="@+id/normalView"
         android:orderInCategory="100"
-        android:title="Normal View"
+        android:title="@string/normalMap"
         />
 
     <item
         android:id="@+id/satelliteView"
         android:orderInCategory="100"
-        android:title="Satellite View"
+        android:title="@string/satleliteMap"
         />
 
     <item
         android:id="@+id/hybridView"
         android:orderInCategory="100"
-        android:title="Hybrid View"
+        android:title="@string/hybridMap"
         />
 
     <item
         android:id="@+id/signOut"
         android:orderInCategory="100"
-        android:title="Sign Out"
+        android:title="@string/signout"
         app:showAsAction="never" />
 
 
