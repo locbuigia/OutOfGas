@@ -316,6 +316,12 @@ public class MapsActivity extends AppCompatActivity implements OnMapReadyCallbac
             Intent intent = new Intent(getApplication(), LoginActivity.class);
             intent.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
             startActivity(intent);
+        } else if (id == R.id.normalView) {
+            mMap.setMapType(mMap.MAP_TYPE_NORMAL);
+        } else if (id == R.id.satelliteView) {
+            mMap.setMapType(mMap.MAP_TYPE_SATELLITE);
+        } else if (id == R.id.hybridView) {
+            mMap.setMapType(mMap.MAP_TYPE_HYBRID);
         }
         return true;
     }

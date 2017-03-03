@@ -4,6 +4,24 @@
     tools:context="group5.tcss450.uw.edu.outofgas.MapsActivity">
 
     <item
+        android:id="@+id/normalView"
+        android:orderInCategory="100"
+        android:title="Normal View"
+        />
+
+    <item
+        android:id="@+id/satelliteView"
+        android:orderInCategory="100"
+        android:title="Satellite View"
+        />
+
+    <item
+        android:id="@+id/hybridView"
+        android:orderInCategory="100"
+        android:title="Hybrid View"
+        />
+
+    <item
         android:id="@+id/signOut"
         android:orderInCategory="100"
         android:title="Sign Out"
