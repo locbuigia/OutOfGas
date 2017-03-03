@@ -159,7 +159,7 @@ public class CommentActivity extends AppCompatActivity implements View.OnClickLi
             // Something wrong with the network or the URL.
 
             if (result.startsWith("Unable to")) {
-                Toast.makeText(getApplication(), "unable", Toast.LENGTH_LONG)
+                Toast.makeText(getApplication(), "Unable to finish", Toast.LENGTH_LONG)
                         .show();
                 return;
             } else if (!result.isEmpty() && !result.equals("overwrite")) {

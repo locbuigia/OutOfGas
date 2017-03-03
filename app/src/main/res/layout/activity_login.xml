@@ -14,19 +14,6 @@
         android:layout_height="match_parent">
 
         <TextView
-            android:text="@string/forgotPassword"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="18dp"
-            android:id="@+id/forgetPasswordTextView"
-            android:onClick="forgotPasswordMethod"
-            android:textColor="@color/colorPrimaryDark"
-            android:textStyle="italic"
-            android:textSize="20dp"
-            android:layout_below="@+id/password"
-            android:layout_alignStart="@+id/password" />
-
-        <TextView
             android:text="@string/verifyYourAccount"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
@@ -99,6 +86,26 @@
             android:layout_marginStart="13dp"
             android:layout_below="@+id/verifyCodeText"
             android:layout_alignStart="@+id/verifyCodeText" />
+
+        <CheckBox
+            android:text="@string/rememberMe"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:id="@+id/checkBox"
+            android:layout_below="@+id/password"
+            android:layout_alignStart="@+id/password" />
+
+        <TextView
+            android:text="@string/forgotPassword"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:id="@+id/forgetPasswordTextView"
+            android:onClick="forgotPasswordMethod"
+            android:textColor="@color/colorPrimaryDark"
+            android:textStyle="italic"
+            android:textSize="20dp"
+            android:layout_below="@+id/checkBox"
+            android:layout_alignStart="@+id/checkBox" />
     </RelativeLayout>
 
 </FrameLayout>

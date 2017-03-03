@@ -119,7 +119,7 @@ public class MapsActivity extends AppCompatActivity implements OnMapReadyCallbac
                 DataTransfer[1] = url;
                 final GetNearbyPlacesData getNearbyPlacesData = new GetNearbyPlacesData();
                 getNearbyPlacesData.execute(DataTransfer);
-                Toast.makeText(MapsActivity.this,"Nearby Gas Stations", Toast.LENGTH_LONG).show();
+                Toast.makeText(MapsActivity.this,"Nearby Gas Stations", Toast.LENGTH_SHORT).show();
                 mMap.setOnInfoWindowClickListener(new GoogleMap.OnInfoWindowClickListener() {
                     @Override
                     public void onInfoWindowClick(Marker marker) {
@@ -217,7 +217,7 @@ public class MapsActivity extends AppCompatActivity implements OnMapReadyCallbac
         //move map camera
         mMap.moveCamera(CameraUpdateFactory.newLatLng(latLng));
         mMap.animateCamera(CameraUpdateFactory.zoomTo(13));
-        Toast.makeText(MapsActivity.this,"Your Current Location", Toast.LENGTH_LONG).show();
+        Toast.makeText(MapsActivity.this,"Your Current Location", Toast.LENGTH_SHORT).show();
 
 
         //stop location updates
@@ -294,7 +294,7 @@ public class MapsActivity extends AppCompatActivity implements OnMapReadyCallbac
 
                 } else {
 
-                    Toast.makeText(this, "permission denied", Toast.LENGTH_LONG).show();
+                    Toast.makeText(this, "Permission Denied", Toast.LENGTH_LONG).show();
                 }
                 return;
             }

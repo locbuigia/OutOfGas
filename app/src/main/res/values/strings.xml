@@ -25,5 +25,5 @@
     <string name="signout">Sign Out</string>
     <string name="comment">Comment</string>
     <string name="save">Save this place</string>
-
+    <string name="rememberMe">Remember Me</string>
 </resources>
