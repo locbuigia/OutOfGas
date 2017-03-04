@@ -26,4 +26,6 @@
     <string name="comment">Comment</string>
     <string name="save">Save this place</string>
     <string name="rememberMe">Remember Me</string>
+    <string name="delete">Delete Saved Stations</string>
+    <string name="show">Show Saved Stations</string>
 </resources>

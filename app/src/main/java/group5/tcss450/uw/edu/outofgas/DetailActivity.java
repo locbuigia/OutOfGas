@@ -8,10 +8,12 @@ import android.view.MenuItem;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import java.io.BufferedReader;
 import java.io.File;
 import java.io.FileOutputStream;
 import java.io.FileWriter;
 import java.io.InputStream;
+import java.io.InputStreamReader;
 import java.text.DecimalFormat;
 
 public class DetailActivity extends AppCompatActivity {
@@ -87,6 +89,37 @@ public class DetailActivity extends AppCompatActivity {
                 Toast.makeText(getApplication(), "Save Successful!", Toast.LENGTH_SHORT).show();
             } catch (Exception e) {
                 Toast.makeText(getApplication(), "Failed to Save!", Toast.LENGTH_SHORT).show();
+            }
+        } else if (id == R.id.delete) {
+            File file = new File(getFilesDir(), "SavedStations.txt");
+            try {
+                FileWriter writer = new FileWriter(file);
+                writer.write("");
+                writer.close();
+                Toast.makeText(getApplication(), "Delete Successful!", Toast.LENGTH_SHORT).show();
+            } catch (Exception e) {
+                Toast.makeText(getApplication(), "Failed to Delete!", Toast.LENGTH_SHORT).show();
+            }
+        } else if (id == R.id.showEntries) {
+            File file = new File(getFilesDir(), "SavedStations.txt");
+            try {
+                InputStream input = openFileInput("SavedStations.txt");
+                InputStreamReader inputStreamReader = new InputStreamReader(input);
+                BufferedReader bufferedReader = new BufferedReader(inputStreamReader);
+                String receiveString = "";
+                StringBuilder stringBuilder = new StringBuilder();
+
+                while ( (receiveString = bufferedReader.readLine()) != null ) {
+                    stringBuilder.append(receiveString);
+                }
+
+                input.close();
+                inputStreamReader.close();
+                String string = stringBuilder.toString();
+                Toast.makeText(getApplication(), string, Toast.LENGTH_SHORT).show();
+
+            } catch (Exception e) {
+                Toast.makeText(getApplication(), "Failed to Read!", Toast.LENGTH_SHORT).show();
             }
         }
         return true;
