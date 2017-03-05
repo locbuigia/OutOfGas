@@ -5,7 +5,9 @@
  */
 package group5.tcss450.uw.edu.outofgas;
 
+import android.content.Context;
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.os.AsyncTask;
 import android.support.v4.app.FragmentTransaction;
 import android.support.v7.app.AppCompatActivity;
@@ -13,6 +15,7 @@ import android.os.Bundle;
 import android.view.Gravity;
 import android.view.View;
 import android.widget.Button;
+import android.widget.CheckBox;
 import android.widget.EditText;
 import android.widget.TextView;
 import android.widget.Toast;
@@ -38,25 +41,48 @@ public class LoginActivity extends AppCompatActivity {
     /*
      * Edittext fields that hold the entered username and password.
      */
-
     private EditText username, password;
 
     /*
      * Partial url for access to the database.
      */
-
     private static final String PARTIAL_URL
             = "http://cssgate.insttech.washington.edu/" +
             "~locbui/";
 
     /*
+     * SharePref for saving user's login
+     */
+    private SharedPreferences mPrefs;
+
+    /*
+     * The boolean value for the check box.
+     */
+    private boolean mCheckBox;
+
+    /*
+     * Check variable for save log in.
+     */
+    private boolean mLogin;
+
+    /*
+     * value to store the username
+     */
+    private String mUsername;
+
+    /*
      * Creates the activity and adds click listeners.
      */
-
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_login);
+        mPrefs = getSharedPreferences(getString(R.string.SHARED_PREFS), Context.MODE_PRIVATE);
+        mUsername = mPrefs.getString(getString(R.string.username),"0");
+        if (!mUsername.equals("0")) {
+            Intent intent = new Intent(getApplication(), MapsActivity.class);
+            startActivity(intent);
+        }
         username = (EditText) findViewById(R.id.username);
         username.requestFocus();
         password = (EditText) findViewById(R.id.password);
@@ -80,11 +106,30 @@ public class LoginActivity extends AppCompatActivity {
                 } else if (password.getText().toString().contains("'")) {
                     password.setError("Password cannot contain special character");
                 } else {
+                    mUsername = theUsername;
                     user = theUsername;
                     task.execute(PARTIAL_URL, theUsername, thePassword);
                 }
             }
         });
+    }
+
+    /*
+     * Check to see if the user choose to remember their login
+     */
+    private boolean isCheck(){
+        CheckBox checkBox = (CheckBox) findViewById(R.id.checkBox);
+        if(checkBox.isChecked()) { return mCheckBox = true;}
+        return mCheckBox;
+    }
+
+    /*
+     * Store the username to sharedPref
+     */
+    public void saveToSharePref(String theUsername){
+        if (isCheck()&& mLogin) {
+            mPrefs.edit().putString(getString(R.string.username),theUsername).apply();
+        }
     }
 
     /*
@@ -134,6 +179,8 @@ public class LoginActivity extends AppCompatActivity {
             } else if (!result.isEmpty() && !result.startsWith("Unable to")) {
                 Toast.makeText(getApplication(), "Login Success!", Toast.LENGTH_LONG).show();
                 Intent intent = new Intent(getApplication(), MapsActivity.class);
+                mLogin = true;
+                saveToSharePref(mUsername);
                 startActivity(intent);
             } else if (result.isEmpty() && !result.startsWith("Unable to")) {
                 Toast toast = Toast.makeText(getApplication(), "Login Failed! Invalid Username or Password", Toast.LENGTH_LONG);

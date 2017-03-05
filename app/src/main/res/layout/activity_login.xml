@@ -87,14 +87,6 @@
             android:layout_below="@+id/verifyCodeText"
             android:layout_alignStart="@+id/verifyCodeText" />
 
-        <CheckBox
-            android:text="@string/rememberMe"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:id="@+id/checkBox"
-            android:layout_below="@+id/password"
-            android:layout_alignStart="@+id/password" />
-
         <TextView
             android:text="@string/forgotPassword"
             android:layout_width="wrap_content"
@@ -105,7 +97,17 @@
             android:textStyle="italic"
             android:textSize="20dp"
             android:layout_below="@+id/checkBox"
-            android:layout_alignStart="@+id/checkBox" />
+            android:layout_alignStart="@+id/checkBox"
+            android:layout_marginTop="11dp" />
+
+        <CheckBox
+            android:text="@string/rememberMe"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textSize="17dp"
+            android:id="@+id/checkBox"
+            android:layout_below="@+id/password"
+            android:layout_alignStart="@+id/password" />
     </RelativeLayout>
 
 </FrameLayout>

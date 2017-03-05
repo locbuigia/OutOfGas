@@ -1,6 +1,8 @@
 package group5.tcss450.uw.edu.outofgas;
 
+import android.content.Context;
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.Menu;
@@ -22,10 +24,16 @@ public class DetailActivity extends AppCompatActivity {
 
     private TextView mVicinityTv;
 
+    /*
+     * SharePref for saving user's login
+     */
+    private SharedPreferences mPrefs;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_detail);
+        mPrefs = getSharedPreferences(getString(R.string.SHARED_PREFS), Context.MODE_PRIVATE);
 
         mNameTv = (TextView) findViewById(R.id.nameTextView);
         String name = getIntent().getSerializableExtra("name").toString();
@@ -74,6 +82,7 @@ public class DetailActivity extends AppCompatActivity {
             LoginActivity.user = "";
             VerifyFragment.myVerifyUsername = "";
             Intent intent = new Intent(getApplication(), LoginActivity.class);
+            mPrefs.edit().putString(getString(R.string.username),"0").apply();
             intent.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
             startActivity(intent);
         } else if (id == R.id.save) {
