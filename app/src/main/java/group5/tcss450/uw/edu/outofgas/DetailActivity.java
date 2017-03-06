@@ -8,8 +8,11 @@ import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.Menu;
 import android.view.MenuItem;
+import android.widget.FrameLayout;
 import android.widget.TextView;
 import android.widget.Toast;
+
+import com.google.android.gms.vision.Frame;
 
 import java.io.BufferedReader;
 import java.io.File;
@@ -30,6 +33,12 @@ public class DetailActivity extends AppCompatActivity {
      * SharePref for saving user's login
      */
     private SharedPreferences mPrefs;
+
+    private MenuItem mSave;
+
+    private MenuItem mShow;
+
+    private MenuItem mDelete;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -62,6 +71,9 @@ public class DetailActivity extends AppCompatActivity {
     public boolean onCreateOptionsMenu(Menu menu) {
         // Inflate the menu; this adds items to the action bar if it is present.
         getMenuInflater().inflate(R.menu.menu_main, menu);
+        mSave = menu.findItem(R.id.save);
+        mShow = menu.findItem(R.id.showEntries);
+        mDelete = menu.findItem(R.id.delete);
         return true;
     }
 
@@ -88,7 +100,6 @@ public class DetailActivity extends AppCompatActivity {
             intent.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
             startActivity(intent);
         } else if (id == R.id.save) {
-            File file = new File(getFilesDir(), "SavedStations.txt");
             try {
                 OutputStreamWriter writer = new OutputStreamWriter(openFileOutput("SavedStations.txt", Context.MODE_APPEND));
                 writer.append("Gas Station Name: ");
@@ -100,6 +111,7 @@ public class DetailActivity extends AppCompatActivity {
                 writer.append(System.lineSeparator());
                 writer.close();
                 Toast.makeText(getApplication(), "Save Successful!", Toast.LENGTH_SHORT).show();
+                mSave.setEnabled(false);
             } catch (Exception e) {
                 Toast.makeText(getApplication(), "Failed to Save!", Toast.LENGTH_SHORT).show();
             }
@@ -109,7 +121,9 @@ public class DetailActivity extends AppCompatActivity {
                 FileWriter writer = new FileWriter(file);
                 writer.write("");
                 writer.close();
+                EntriesFragment.textView.setText("");
                 Toast.makeText(getApplication(), "Delete Successful!", Toast.LENGTH_SHORT).show();
+                mDelete.setEnabled(false);
             } catch (Exception e) {
                 Toast.makeText(getApplication(), "Failed to Delete!", Toast.LENGTH_SHORT).show();
             }
@@ -122,8 +136,17 @@ public class DetailActivity extends AppCompatActivity {
             transaction.addToBackStack(null);
             // Commit the transaction
             transaction.commit();
+            mShow.setEnabled(false);
+            mSave.setEnabled(false);
         }
         return true;
     }
 
+    @Override
+    public void onBackPressed() {
+        super.onBackPressed();
+        mSave.setEnabled(true);
+        mShow.setEnabled(true);
+        mDelete.setEnabled(true);
+    }
 }

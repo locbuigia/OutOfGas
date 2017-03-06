@@ -7,7 +7,7 @@
     <string name="title_activity_maps">Map</string>
     <string name="title_activity_details">DetailsActivity</string>
     <string name="sendCommentButton">Send</string>
-    <string name="forgotPassword">Forgot your password?</string>
+    <string name="forgotPassword">Forgot password?</string>
     <string name="verifyYourAccount">Verify your account</string>
     <string name="distance">Distance(miles):</string>
     <string name="price_level">Price level:*</string>
