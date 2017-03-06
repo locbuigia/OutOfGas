@@ -9,6 +9,7 @@ import android.location.Location;
 import android.os.Build;
 import android.support.v4.app.ActivityCompat;
 import android.os.Bundle;
+import android.support.v4.app.FragmentTransaction;
 import android.support.v4.content.ContextCompat;
 import android.support.v7.app.AppCompatActivity;
 import android.util.Log;
@@ -41,14 +42,18 @@ public class MapsActivity extends AppCompatActivity implements OnMapReadyCallbac
         GoogleApiClient.OnConnectionFailedListener, LocationListener
 {
 
-    private GoogleMap mMap;
+    public static GoogleMap mMap;
     double latitude;
     double longitude;
-    private int PROXIMITY_RADIUS = 4000;
+    public static int mRadius = 4000;
     GoogleApiClient mGoogleApiClient;
     Location mLastLocation;
     Marker mCurrLocationMarker;
     LocationRequest mLocationRequest;
+
+    public static int checkedRadioBtnId = R.id.normalBtn;
+
+    public static int radiusProgress = 0;
     /*
      * SharePref for saving user's login
      */
@@ -190,7 +195,7 @@ public class MapsActivity extends AppCompatActivity implements OnMapReadyCallbac
 
         StringBuilder googlePlacesUrl = new StringBuilder("https://maps.googleapis.com/maps/api/place/nearbysearch/json?");
         googlePlacesUrl.append("location=" + latitude + "," + longitude);
-        googlePlacesUrl.append("&radius=" + PROXIMITY_RADIUS);
+        googlePlacesUrl.append("&radius=" + mRadius);
         googlePlacesUrl.append("&type=" + nearbyPlace);
         googlePlacesUrl.append("&sensor=true");
         googlePlacesUrl.append("&key=" + "AIzaSyCfUf81B45d045Yf-9PiCtlF7RXQN9tr7I");
@@ -234,14 +239,22 @@ public class MapsActivity extends AppCompatActivity implements OnMapReadyCallbac
 
     }
 
+    /**
+     * This method is used to sign out.
+     */
+    private void signOut() {
+        LoginActivity.user = "";
+        VerifyFragment.myVerifyUsername = "";
+        Intent intent = new Intent(getApplication(), LoginActivity.class);
+        mPrefs.edit().putString(getString(R.string.username),"0").apply();
+        intent.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
+        startActivity(intent);
+    }
+
     @Override
     public void onBackPressed() {
         super.onBackPressed();
-        LoginActivity.user = "";
-        VerifyFragment.myVerifyUsername = "";
-        Intent intent = new Intent(this, LoginActivity.class);
-        intent.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
-        startActivity(intent);
+        signOut();
     }
 
     @Override
@@ -320,16 +333,10 @@ public class MapsActivity extends AppCompatActivity implements OnMapReadyCallbac
         int id = item.getItemId();
 
         if (id == R.id.signOut) {
-            Intent intent = new Intent(getApplication(), LoginActivity.class);
-            mPrefs.edit().putString(getString(R.string.username),"0").apply();
-            intent.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
+            signOut();
+        } else if (id == R.id.setting) {
+            Intent intent = new Intent(getApplication(), SettingActivity.class);
             startActivity(intent);
-        } else if (id == R.id.normalView) {
-            mMap.setMapType(mMap.MAP_TYPE_NORMAL);
-        } else if (id == R.id.satelliteView) {
-            mMap.setMapType(mMap.MAP_TYPE_SATELLITE);
-        } else if (id == R.id.hybridView) {
-            mMap.setMapType(mMap.MAP_TYPE_HYBRID);
         }
         return true;
     }

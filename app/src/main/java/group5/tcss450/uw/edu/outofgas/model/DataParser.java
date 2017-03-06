@@ -36,12 +36,13 @@ public class DataParser implements Serializable {
 
     public List<DataParser> parse(String jsonData) {
         ArrayList<DataParser> list = new ArrayList<>();
-        JSONArray jsonArray = null;
+        JSONArray jsonArray;
         JSONObject jsonObject;
 
         try {
             Log.d("Places", "parse");
             jsonObject = new JSONObject(jsonData);
+            String nextPageToken = jsonObject.getString("next_page_token");
             jsonArray = jsonObject.getJSONArray("results");
 
             int length = jsonArray.length();
@@ -57,14 +58,14 @@ public class DataParser implements Serializable {
                     String lat = location.getString("lat");
                     String lng = location.getString("lng");
 
-                    double rating = 0.0;
+                    double rating;
                     try {
                         rating = object.getDouble("rating");
                     } catch (JSONException e) {
                         rating = 0.0;
                     }
 
-                    int priceLevel = 0;
+                    int priceLevel;
 
                     try {
                         priceLevel = object.getInt("price_level");

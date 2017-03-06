@@ -1,9 +1,15 @@
 package group5.tcss450.uw.edu.outofgas;
 
+import android.content.Context;
+import android.content.Intent;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
+import android.support.v4.app.FragmentTransaction;
 import android.text.method.ScrollingMovementMethod;
 import android.view.LayoutInflater;
+import android.view.Menu;
+import android.view.MenuInflater;
+import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.TextView;
@@ -12,6 +18,8 @@ import android.widget.Toast;
 
 import java.io.File;
 import java.io.FileInputStream;
+import java.io.FileWriter;
+import java.io.OutputStreamWriter;
 
 public class EntriesFragment extends Fragment {
     /**
@@ -31,12 +39,20 @@ public class EntriesFragment extends Fragment {
         textView = (TextView) view.findViewById(R.id.entries);
         textView.setMovementMethod(new ScrollingMovementMethod());
         try {
-            File file = new File(getActivity().getFilesDir(), "SavedStations.txt");
+            String fileName = "";
+            if (!VerifyFragment.myVerifyUsername.equals("")) {
+                fileName = VerifyFragment.myVerifyUsername;
+            } else if (!LoginActivity.mUsername.equals("")) {
+                fileName = LoginActivity.mUsername;
+            } else if (!LoginActivity.user.equals("")) {
+                fileName = LoginActivity.user;
+            }
+            File file = new File(getActivity().getFilesDir(), fileName + ".txt");
             FileInputStream fileInputStream = new FileInputStream(file);
             int ch = 0;
             char c;
             String string = "";
-            while ( (ch = fileInputStream.read()) != -1) {
+            while ((ch = fileInputStream.read()) != -1) {
                 c = (char) ch;
                 string = string + c;
             }
@@ -47,5 +63,4 @@ public class EntriesFragment extends Fragment {
         }
         return view;
     }
-
 }

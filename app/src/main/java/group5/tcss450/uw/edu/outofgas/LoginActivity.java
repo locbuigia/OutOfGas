@@ -12,6 +12,7 @@ import android.os.AsyncTask;
 import android.support.v4.app.FragmentTransaction;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.Gravity;
 import android.view.View;
 import android.widget.Button;
@@ -68,7 +69,7 @@ public class LoginActivity extends AppCompatActivity {
     /*
      * value to store the username
      */
-    private String mUsername;
+    public static String mUsername = "";
 
     /*
      * Creates the activity and adds click listeners.
@@ -82,6 +83,7 @@ public class LoginActivity extends AppCompatActivity {
         if (!mUsername.equals("0")) {
             Intent intent = new Intent(getApplication(), MapsActivity.class);
             startActivity(intent);
+            Log.d("username", mUsername);
         }
         username = (EditText) findViewById(R.id.username);
         username.requestFocus();

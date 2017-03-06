@@ -87,6 +87,9 @@ public class DetailActivity extends AppCompatActivity {
             if (!VerifyFragment.myVerifyUsername.equals("")) {
                 LoginActivity.user = VerifyFragment.myVerifyUsername;
                 intent.putExtra("username", LoginActivity.user);
+            } else if (!LoginActivity.mUsername.equals("")) {
+                LoginActivity.user = LoginActivity.mUsername;
+                intent.putExtra("username", LoginActivity.user);
             } else if (!LoginActivity.user.equals("")){
                 intent.putExtra("username", LoginActivity.user);
             }
@@ -101,7 +104,15 @@ public class DetailActivity extends AppCompatActivity {
             startActivity(intent);
         } else if (id == R.id.save) {
             try {
-                OutputStreamWriter writer = new OutputStreamWriter(openFileOutput("SavedStations.txt", Context.MODE_APPEND));
+                String fileName = "";
+                if (!VerifyFragment.myVerifyUsername.equals("")) {
+                    fileName = VerifyFragment.myVerifyUsername;
+                } else if (!LoginActivity.mUsername.equals("")) {
+                    fileName = LoginActivity.mUsername;
+                } else if (!LoginActivity.user.equals("")){
+                    fileName = LoginActivity.user;
+                }
+                OutputStreamWriter writer = new OutputStreamWriter(openFileOutput(fileName + ".txt", Context.MODE_APPEND));
                 writer.append("Gas Station Name: ");
                 writer.append(mNameTv.getText().toString());
                 writer.append(System.lineSeparator());
@@ -116,7 +127,15 @@ public class DetailActivity extends AppCompatActivity {
                 Toast.makeText(getApplication(), "Failed to Save!", Toast.LENGTH_SHORT).show();
             }
         } else if (id == R.id.delete) {
-            File file = new File(getFilesDir(), "SavedStations.txt");
+            String fileName = "";
+            if (!VerifyFragment.myVerifyUsername.equals("")) {
+                fileName = VerifyFragment.myVerifyUsername;
+            } else if (!LoginActivity.mUsername.equals("")) {
+                fileName = LoginActivity.mUsername;
+            } else if (!LoginActivity.user.equals("")){
+                fileName = LoginActivity.user;
+            }
+            File file = new File(getFilesDir(), fileName + ".txt");
             try {
                 FileWriter writer = new FileWriter(file);
                 writer.write("");

@@ -29,7 +29,8 @@
             android:name=".MapsActivity"
             android:label="@string/title_activity_maps" />
         <activity android:name=".DetailActivity" />
-        <activity android:name=".CommentActivity"></activity>
+        <activity android:name=".CommentActivity" />
+        <activity android:name=".SettingActivity"></activity>
     </application>
 
 </manifest>

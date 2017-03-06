@@ -4,21 +4,9 @@
     tools:context="group5.tcss450.uw.edu.outofgas.MapsActivity">
 
     <item
-        android:id="@+id/normalView"
+        android:id="@+id/setting"
         android:orderInCategory="100"
-        android:title="@string/normalMap"
-        />
-
-    <item
-        android:id="@+id/satelliteView"
-        android:orderInCategory="100"
-        android:title="@string/satleliteMap"
-        />
-
-    <item
-        android:id="@+id/hybridView"
-        android:orderInCategory="100"
-        android:title="@string/hybridMap"
+        android:title="@string/setting"
         />
 
     <item

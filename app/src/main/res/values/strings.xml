@@ -30,4 +30,10 @@
     <string name="show">Show Saved Stations</string>
     <string name="SHARED_PREFS">edu.uw.tcss450.PREFS</string>
     <string name="username">usernameString</string>
+    <string name="setting">Setting</string>
+    <string name="chooseView">Choose your view of map</string>
+    <string name="chooseRadius">Choose the radius</string>
+    <string name="currentRadius">Current Radius in Kilometers:</string>
+    <string name="message">*The maximum gas station appear is 20 for any radius</string>
+
 </resources>
