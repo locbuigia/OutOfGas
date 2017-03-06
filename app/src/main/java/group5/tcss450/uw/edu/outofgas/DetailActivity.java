@@ -3,6 +3,7 @@ package group5.tcss450.uw.edu.outofgas;
 import android.content.Context;
 import android.content.Intent;
 import android.content.SharedPreferences;
+import android.support.v4.app.FragmentTransaction;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.Menu;
@@ -16,6 +17,7 @@ import java.io.FileOutputStream;
 import java.io.FileWriter;
 import java.io.InputStream;
 import java.io.InputStreamReader;
+import java.io.OutputStreamWriter;
 import java.text.DecimalFormat;
 
 public class DetailActivity extends AppCompatActivity {
@@ -88,12 +90,14 @@ public class DetailActivity extends AppCompatActivity {
         } else if (id == R.id.save) {
             File file = new File(getFilesDir(), "SavedStations.txt");
             try {
-                FileWriter writer = new FileWriter(file);
+                OutputStreamWriter writer = new OutputStreamWriter(openFileOutput("SavedStations.txt", Context.MODE_APPEND));
                 writer.append("Gas Station Name: ");
                 writer.append(mNameTv.getText().toString());
-                writer.append(", Gas Station Address: ");
+                writer.append(System.lineSeparator());
+                writer.append("Gas Station Address: ");
                 writer.append(mVicinityTv.getText().toString());
-                writer.append('\n');
+                writer.append(System.lineSeparator());
+                writer.append(System.lineSeparator());
                 writer.close();
                 Toast.makeText(getApplication(), "Save Successful!", Toast.LENGTH_SHORT).show();
             } catch (Exception e) {
@@ -110,26 +114,14 @@ public class DetailActivity extends AppCompatActivity {
                 Toast.makeText(getApplication(), "Failed to Delete!", Toast.LENGTH_SHORT).show();
             }
         } else if (id == R.id.showEntries) {
-            File file = new File(getFilesDir(), "SavedStations.txt");
-            try {
-                InputStream input = openFileInput("SavedStations.txt");
-                InputStreamReader inputStreamReader = new InputStreamReader(input);
-                BufferedReader bufferedReader = new BufferedReader(inputStreamReader);
-                String receiveString = "";
-                StringBuilder stringBuilder = new StringBuilder();
-
-                while ( (receiveString = bufferedReader.readLine()) != null ) {
-                    stringBuilder.append(receiveString);
-                }
-
-                input.close();
-                inputStreamReader.close();
-                String string = stringBuilder.toString();
-                Toast.makeText(getApplication(), string, Toast.LENGTH_SHORT).show();
-
-            } catch (Exception e) {
-                Toast.makeText(getApplication(), "Failed to Read!", Toast.LENGTH_SHORT).show();
-            }
+            EntriesFragment entriesFragment = new EntriesFragment();
+            FragmentTransaction transaction = getSupportFragmentManager().beginTransaction();
+            transaction.setCustomAnimations(R.anim.enter_from_right, R.anim.exit_to_left,
+                    R.anim.enter_from_left, R.anim.exit_to_right);
+            transaction.replace(R.id.activity_detail, entriesFragment);
+            transaction.addToBackStack(null);
+            // Commit the transaction
+            transaction.commit();
         }
         return true;
     }
