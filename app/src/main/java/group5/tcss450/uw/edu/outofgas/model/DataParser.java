@@ -91,7 +91,6 @@ public class DataParser implements Serializable {
         try {
             Log.d("Places", "parse");
             jsonObject = new JSONObject(jsonData);
-            String nextPageToken = jsonObject.getString("next_page_token");
             jsonArray = jsonObject.getJSONArray("results");
 
             int length = jsonArray.length();
