@@ -65,7 +65,7 @@ public class EntriesFragment extends Fragment {
             textView.setText(string);
             fileInputStream.close();
         } catch (Exception e) {
-            Toast.makeText(this.getContext(), "Failed To Open File!", Toast.LENGTH_SHORT).show();
+            Toast.makeText(this.getContext(), "Nothing to show here", Toast.LENGTH_SHORT).show();
         }
         return view;
     }

@@ -84,12 +84,6 @@ public class MapsActivity extends AppCompatActivity implements OnMapReadyCallbac
     GoogleApiClient mGoogleApiClient;
 
     /*
-     * The last location of the user.
-     */
-
-    Location mLastLocation;
-
-    /*
      * The current location marker of the user.
      */
 
@@ -296,8 +290,6 @@ public class MapsActivity extends AppCompatActivity implements OnMapReadyCallbac
      */
     @Override
     public void onLocationChanged(Location location) {
-
-        mLastLocation = location;
         if (mCurrLocationMarker != null) {
             mCurrLocationMarker.remove();
         }
@@ -305,6 +297,8 @@ public class MapsActivity extends AppCompatActivity implements OnMapReadyCallbac
         //Place current location marker
         latitude = location.getLatitude();
         longitude = location.getLongitude();
+        Log.d("lat:" , "" + latitude);
+        Log.d("lng:" , "" + longitude);
         LatLng latLng = new LatLng(location.getLatitude(), location.getLongitude());
         MarkerOptions markerOptions = new MarkerOptions();
         markerOptions.position(latLng);
