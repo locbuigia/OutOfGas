@@ -15,6 +15,7 @@ import android.location.Location;
 import android.os.Build;
 import android.support.v4.app.ActivityCompat;
 import android.os.Bundle;
+import android.support.v4.app.FragmentManager;
 import android.support.v4.app.FragmentTransaction;
 import android.support.v4.content.ContextCompat;
 import android.support.v7.app.AppCompatActivity;
@@ -115,6 +116,16 @@ public class MapsActivity extends AppCompatActivity implements OnMapReadyCallbac
      * SharePref for saving user's login
      */
     private SharedPreferences mPrefs;
+
+    /*
+     * The boolean value to check if the fragment is at the top of the stack.
+     */
+    private boolean mCheckFragment = false;
+
+    /*
+     * The MenuItem
+     */
+    private MenuItem mShowEntries;
 
     /*
      * Creates the activity to appear when user logs in.
@@ -337,7 +348,18 @@ public class MapsActivity extends AppCompatActivity implements OnMapReadyCallbac
     @Override
     public void onBackPressed() {
         super.onBackPressed();
-        signOut();
+        if (!mCheckFragment) {
+            mPrefs.edit().putString(getString(R.string.username),"0").apply();
+            LoginActivity.user = "";
+            VerifyFragment.myVerifyUsername = "";
+            checkedRadioBtnId = R.id.normalBtn;
+            radiusProgress = 0;
+            mRadius = 4000;
+        } else {
+            mCheckFragment = false;
+            mShowEntries.setEnabled(true);
+        }
+        Log.d("Boolean:", mCheckFragment +"");
     }
 
     /*
@@ -420,6 +442,7 @@ public class MapsActivity extends AppCompatActivity implements OnMapReadyCallbac
     public boolean onCreateOptionsMenu(Menu menu) {
         // Inflate the menu; this adds items to the action bar if it is present.
         getMenuInflater().inflate(R.menu.menu_in_maps, menu);
+        mShowEntries = menu.findItem(R.id.showEntriesInMap);
         return true;
     }
 
@@ -436,6 +459,22 @@ public class MapsActivity extends AppCompatActivity implements OnMapReadyCallbac
         } else if (id == R.id.setting) {
             Intent intent = new Intent(getApplication(), SettingActivity.class);
             startActivity(intent);
+        } else if (id == R.id.showEntriesInMap) {
+            EntriesFragment entriesFragment = new EntriesFragment();
+            FragmentManager fm = getSupportFragmentManager();
+            FragmentTransaction transaction = fm.beginTransaction();
+            transaction.setCustomAnimations(R.anim.enter_from_right, R.anim.exit_to_left,
+                    R.anim.enter_from_left, R.anim.exit_to_right);
+            transaction.replace(R.id.activity_maps, entriesFragment);
+            transaction.addToBackStack(null);
+            // Commit the transaction
+            transaction.commit();
+            fm.executePendingTransactions();
+            Log.d("BackStack:", Integer.toString(fm.getBackStackEntryCount()));
+            if (fm.getBackStackEntryCount() == 1) {
+                mCheckFragment = true;
+                mShowEntries.setEnabled(false);
+            }
         }
         return true;
     }
