@@ -1,3 +1,9 @@
+/**
+ * Loc Bui, Andrew Dinh, Phuc Tran
+ * Mar 6, 2017
+ * @version: 1.0
+ */
+
 package group5.tcss450.uw.edu.outofgas.model;
 
 import android.util.Log;
@@ -9,10 +15,15 @@ import java.io.InputStreamReader;
 import java.net.HttpURLConnection;
 import java.net.URL;
 
-/**
- * Created by navneet on 23/7/16.
+/*
+ * Class that takes a given url and downloads from it.
  */
+
 public class DownloadUrl {
+
+    /*
+     * Reads the url string and creates a connection based on it.
+     */
 
     public String readUrl(String strUrl) throws IOException {
         String data = "";

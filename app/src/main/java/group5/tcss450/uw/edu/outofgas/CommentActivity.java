@@ -1,3 +1,9 @@
+/**
+ * Loc Bui, Andrew Dinh, Phuc Tran
+ * Mar 6, 2017
+ * @version: 1.0
+ */
+
 package group5.tcss450.uw.edu.outofgas;
 
 import android.os.AsyncTask;
@@ -17,13 +23,29 @@ import java.net.URL;
 import java.text.SimpleDateFormat;
 import java.util.Date;
 
+/**
+ * This is the comment activity where users can add their comments to a chosen gas staion.
+ */
+
 public class CommentActivity extends AppCompatActivity implements View.OnClickListener{
 
+    /*
+     * The TextView of the comments section.
+     */
+
     private TextView t;
+
+    /*
+     * The partial url for the php script.
+     */
+
     private static final String PARTIAL_URL
             = "http://cssgate.insttech.washington.edu/" +
             "~phuctran/";
 
+    /*
+     * Creates the activity by getting the previous comments.
+     */
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -45,6 +67,11 @@ public class CommentActivity extends AppCompatActivity implements View.OnClickLi
         task = new loadCommentTask();
         task.execute(PARTIAL_URL, address);
     }
+
+    /*
+     * When the user enters their message, save it into the server
+     * for others to be able to see when they access the same station.
+     */
 
     @Override
     public void onClick(View v) {
@@ -121,6 +148,7 @@ public class CommentActivity extends AppCompatActivity implements View.OnClickLi
     * Web service task that calls the saveComment php script.
     * Save the comment that the user sent.
     */
+
     private class saveCommentTask extends AsyncTask<String, Void, String> {
         private final String SERVICE = "saveComment.php";
         @Override
@@ -173,11 +201,19 @@ public class CommentActivity extends AppCompatActivity implements View.OnClickLi
         }
     }
 
+    /*
+     * Creates the url string.
+     */
+
     private String URLString (String str){
         str = str.replace(' ', '+')
         .replace("\'", "\\'");
         return str;
     }
+
+    /*
+     * Changes the string for the url.
+     */
 
     private String URLStringChange (String str){
         String returnStr;

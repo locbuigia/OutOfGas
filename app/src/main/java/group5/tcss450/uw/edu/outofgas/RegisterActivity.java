@@ -1,8 +1,9 @@
 /**
  * Loc Bui, Andrew Dinh, Phuc Tran
- * Feb 9, 2017
- * @version: 0.1
+ * Mar 6, 2017
+ * @version: 1.0
  */
+
 package group5.tcss450.uw.edu.outofgas;
 
 import android.os.AsyncTask;

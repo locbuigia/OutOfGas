@@ -1,3 +1,9 @@
+/**
+ * Loc Bui, Andrew Dinh, Phuc Tran
+ * Mar 6, 2017
+ * @version: 1.0
+ */
+
 package group5.tcss450.uw.edu.outofgas;
 
 import android.Manifest;
@@ -37,27 +43,82 @@ import com.google.android.gms.maps.model.MarkerOptions;
 import group5.tcss450.uw.edu.outofgas.model.DataParser;
 import group5.tcss450.uw.edu.outofgas.model.GetNearbyPlacesData;
 
+/*
+ * The main map activity that users will see when the log into the app.
+ */
+
 public class MapsActivity extends AppCompatActivity implements OnMapReadyCallback,
         GoogleApiClient.ConnectionCallbacks,
         GoogleApiClient.OnConnectionFailedListener, LocationListener
 {
 
+    /*
+     * The Google map object.
+     */
+
     public static GoogleMap mMap;
+
+    /*
+     * Latitude value for the current location.
+     */
+
     double latitude;
+
+    /*
+     * Longitude value for the current location.
+     */
+
     double longitude;
+
+    /*
+     * The radius for the search of gas stations.
+     */
+
     public static int mRadius = 4000;
+
+    /*
+     * Google maps api object.
+     */
+
     GoogleApiClient mGoogleApiClient;
+
+    /*
+     * The last location of the user.
+     */
+
     Location mLastLocation;
+
+    /*
+     * The current location marker of the user.
+     */
+
     Marker mCurrLocationMarker;
+
+    /*
+     * object for requesting the location.
+     */
+
     LocationRequest mLocationRequest;
 
+    /*
+     * The radio button object.
+     */
+
     public static int checkedRadioBtnId = R.id.normalBtn;
+
+    /*
+     * The progress of the slider for the radius.
+     */
 
     public static int radiusProgress = 0;
     /*
      * SharePref for saving user's login
      */
     private SharedPreferences mPrefs;
+
+    /*
+     * Creates the activity to appear when user logs in.
+     */
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -84,6 +145,10 @@ public class MapsActivity extends AppCompatActivity implements OnMapReadyCallbac
         mapFragment.getMapAsync(this);
     }
 
+    /*
+     * Checks the google play services showing a failure dialog if it fails.
+     */
+
     private boolean CheckGooglePlayServices() {
         GoogleApiAvailability googleAPI = GoogleApiAvailability.getInstance();
         int result = googleAPI.isGooglePlayServicesAvailable(this);
@@ -97,6 +162,9 @@ public class MapsActivity extends AppCompatActivity implements OnMapReadyCallbac
         return true;
     }
 
+    /*
+     * When the Google maps object is ready, set it to appear.
+     */
 
     @Override
     public void onMapReady(GoogleMap googleMap) {
@@ -191,6 +259,10 @@ public class MapsActivity extends AppCompatActivity implements OnMapReadyCallbac
         }
     }
 
+    /*
+     * Gets the url based on the location.
+     */
+
     private String getUrl(double latitude, double longitude, String nearbyPlace) {
 
         StringBuilder googlePlacesUrl = new StringBuilder("https://maps.googleapis.com/maps/api/place/nearbysearch/json?");
@@ -208,6 +280,9 @@ public class MapsActivity extends AppCompatActivity implements OnMapReadyCallbac
 
     }
 
+    /*
+     * When the location changes, update the current location field.
+     */
     @Override
     public void onLocationChanged(Location location) {
 
@@ -242,6 +317,7 @@ public class MapsActivity extends AppCompatActivity implements OnMapReadyCallbac
     /**
      * This method is used to sign out.
      */
+
     private void signOut() {
         LoginActivity.user = "";
         VerifyFragment.myVerifyUsername = "";
@@ -254,11 +330,19 @@ public class MapsActivity extends AppCompatActivity implements OnMapReadyCallbac
         startActivity(intent);
     }
 
+    /*
+     * Signs out the user on the back press.
+     */
+
     @Override
     public void onBackPressed() {
         super.onBackPressed();
         signOut();
     }
+
+    /*
+     * If the connection fails, prompt the user to allow access to their location.
+     */
 
     @Override
     public void onConnectionFailed(ConnectionResult connectionResult) {
@@ -293,6 +377,10 @@ public class MapsActivity extends AppCompatActivity implements OnMapReadyCallbac
         }
     }
 
+    /*
+     * Requests the user for permission to use location.
+     */
+
     @Override
     public void onRequestPermissionsResult(int requestCode,
                                            String permissions[], int[] grantResults) {
@@ -324,12 +412,20 @@ public class MapsActivity extends AppCompatActivity implements OnMapReadyCallbac
         }
     }
 
+    /*
+     * Creates the options menu for the activity.
+     */
+
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
         // Inflate the menu; this adds items to the action bar if it is present.
         getMenuInflater().inflate(R.menu.menu_in_maps, menu);
         return true;
     }
+
+    /*
+     * Listener for when a menu item is selected.
+     */
 
     @Override
     public boolean onOptionsItemSelected(MenuItem item) {

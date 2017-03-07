@@ -1,3 +1,9 @@
+/**
+ * Loc Bui, Andrew Dinh, Phuc Tran
+ * Mar 6, 2017
+ * @version: 1.0
+ */
+
 package group5.tcss450.uw.edu.outofgas;
 
 import android.content.Context;
@@ -23,9 +29,21 @@ import java.io.InputStreamReader;
 import java.io.OutputStreamWriter;
 import java.text.DecimalFormat;
 
+/*
+ * Details activity that displays the information of a chosen gas station.
+ */
+
 public class DetailActivity extends AppCompatActivity {
 
+    /*
+     * Name of the station.
+     */
+
     private TextView mNameTv;
+
+    /*
+     * Address of the station.
+     */
 
     private TextView mVicinityTv;
 
@@ -34,11 +52,27 @@ public class DetailActivity extends AppCompatActivity {
      */
     private SharedPreferences mPrefs;
 
+    /*
+     * MenuItem for saving.
+     */
+
     private MenuItem mSave;
+
+    /*
+     * MenuItem for showing the saved entries.
+     */
 
     private MenuItem mShow;
 
+    /*
+     * MenuItem for deleting the saved entries.
+     */
+
     private MenuItem mDelete;
+
+    /*
+     * Creates the activity and grabs all of the details of the chosen gas station to display.
+     */
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -67,6 +101,11 @@ public class DetailActivity extends AppCompatActivity {
         double distanceInNum = Double.parseDouble(distance);
         distanceTv.setText(new DecimalFormat("##.##").format(distanceInNum));
     }
+
+    /*
+     * Creates the options menu.
+     */
+
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
         // Inflate the menu; this adds items to the action bar if it is present.
@@ -76,6 +115,10 @@ public class DetailActivity extends AppCompatActivity {
         mDelete = menu.findItem(R.id.delete);
         return true;
     }
+
+    /*
+     * Actions that occur when a menu item is selected.
+     */
 
     @Override
     public boolean onOptionsItemSelected(MenuItem item) {
@@ -160,6 +203,10 @@ public class DetailActivity extends AppCompatActivity {
         }
         return true;
     }
+
+    /*
+     * What happens when pressing back.
+     */
 
     @Override
     public void onBackPressed() {

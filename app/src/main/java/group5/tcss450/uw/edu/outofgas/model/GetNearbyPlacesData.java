@@ -1,3 +1,9 @@
+/**
+ * Loc Bui, Andrew Dinh, Phuc Tran
+ * Mar 6, 2017
+ * @version: 1.0
+ */
+
 package group5.tcss450.uw.edu.outofgas.model;
 
 import android.os.AsyncTask;
@@ -18,21 +24,80 @@ import group5.tcss450.uw.edu.outofgas.R;
 
 
 /**
- * Created by navneet on 23/7/16.
+ * Class that gets the gas stations that are nearby the given location.
  */
+
 public class GetNearbyPlacesData extends AsyncTask<Object, String, String>{
 
+    /*
+     * String of the data from Google Places.
+     */
+
     private String googlePlacesData;
+
+    /*
+     * Google maps object.
+     */
+
     private GoogleMap mMap;
+
+    /*
+     * url for the Google Places.
+     */
+
     private String url;
+
+    /*
+     * Latitude of the gas station.
+     */
+
     private double lat;
+
+    /*
+     * Longitude of the gas station.
+     */
+
     private double lng;
+
+    /*
+     * Name of the gas station.
+     */
+
     private String name;
+
+    /*
+     * Address of the gas station.
+     */
+
     private String vicinity;
+
+    /*
+     * Rating of the gas station.
+     */
+
     private double rating;
+
+    /*
+     * Price of the gas station.
+     */
+
     private int priceLevel;
+
+    /*
+     * List of the data that has been parsed.
+     */
+
     public List<DataParser> mList;
+
+    /*
+     * Hashmap of the location markers.
+     */
+
     public HashMap<Marker, Integer> mPubMarkerMap = new HashMap<>();
+
+    /*
+     * Uses the url to get data from Google Places.
+     */
 
     @Override
     protected String doInBackground(Object... params) {
@@ -49,6 +114,10 @@ public class GetNearbyPlacesData extends AsyncTask<Object, String, String>{
         return googlePlacesData;
     }
 
+    /*
+     * Parses the result from the data.
+     */
+
     @Override
     protected void onPostExecute(String result) {
         Log.d("GooglePlacesReadTask", "onPostExecute Entered");
@@ -58,6 +127,10 @@ public class GetNearbyPlacesData extends AsyncTask<Object, String, String>{
         showNearbyPlaces(nearbyPlacesList);
         Log.d("GooglePlacesReadTask", "onPostExecute Exit");
     }
+
+    /*
+     * Shows the nearby gas stations.
+     */
 
     private void showNearbyPlaces(List<DataParser> nearbyPlacesList) {
         mList = new ArrayList<>();

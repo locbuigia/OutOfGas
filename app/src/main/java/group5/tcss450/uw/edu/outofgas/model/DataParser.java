@@ -1,3 +1,9 @@
+/**
+ * Loc Bui, Andrew Dinh, Phuc Tran
+ * Mar 6, 2017
+ * @version: 1.0
+ */
+
 package group5.tcss450.uw.edu.outofgas.model;
 
 
@@ -12,15 +18,50 @@ import java.util.ArrayList;
 import java.util.List;
 
 /**
- * Created by navneet on 23/7/16.
+ * Pareses the data of the gas station given from the Google maps api.
  */
+
 public class DataParser implements Serializable {
 
+    /*
+     * Gas station name
+     */
+
     private String mName;
+
+    /*
+     * The address the station.
+     */
+
     private String mVicinity;
+
+    /*
+     * The latitude and longitude of the station.
+     */
+
     private String mLat, mLng;
+
+    /*
+     * The rating given to the gas station.
+     */
+
     private double mRating;
+
+    /*
+     * The price level of the gas station.
+     */
+
     private int mPriceLevel;
+
+    /*
+     * Constructor of the for the data.
+     * @param theName The name of the station.
+     * @param theVicinity The address from the station.
+     * @param theLat The latitude of the station.
+     * @param theLng The longitude of the station.
+     * @param theRating The rating of the station.
+     * @param thePriceLevel The price level of the station.
+     */
 
     public DataParser(String theName, String theVicinity, String theLat, String theLng, double theRating, int thePriceLevel) {
         mName = theName;
@@ -31,8 +72,16 @@ public class DataParser implements Serializable {
         mPriceLevel = thePriceLevel;
     }
 
+    /*
+     * Empty public constructor that takes no fields.
+     */
+
     public DataParser() {
     }
+
+    /*
+     * Pares the json string and returns a list of data fields.
+     */
 
     public List<DataParser> parse(String jsonData) {
         ArrayList<DataParser> list = new ArrayList<>();

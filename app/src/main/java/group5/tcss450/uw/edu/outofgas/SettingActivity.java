@@ -1,3 +1,9 @@
+/**
+ * Loc Bui, Andrew Dinh, Phuc Tran
+ * Mar 6, 2017
+ * @version: 1.0
+ */
+
 package group5.tcss450.uw.edu.outofgas;
 
 import android.support.v7.app.AppCompatActivity;
@@ -10,9 +16,27 @@ import android.widget.TextView;
 
 import java.util.Map;
 
+/*
+ * Settings activity for changing the search radius and the map type to be used for viewing.
+ */
+
 public class SettingActivity extends AppCompatActivity implements View.OnClickListener{
+
+    /*
+     * Array of ints for the radius.
+     */
+
     private final int[] radiusArray = {4, 6, 8, 10, 12, 14, 16};
+
+    /*
+     * Multipliers for converting the radius to work properly with the map.
+     */
+
     private final int radiusMultiplier = 1000;
+
+    /*
+     * Creates the activity and sets up the slider and radio buttons.
+     */
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -51,6 +75,10 @@ public class SettingActivity extends AppCompatActivity implements View.OnClickLi
 
 
     }
+
+    /*
+     * The actions for when a radio button is selected by the user.
+     */
 
     @Override
     public void onClick(View view) {
