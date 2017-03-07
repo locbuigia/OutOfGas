@@ -245,6 +245,9 @@ public class MapsActivity extends AppCompatActivity implements OnMapReadyCallbac
     private void signOut() {
         LoginActivity.user = "";
         VerifyFragment.myVerifyUsername = "";
+        checkedRadioBtnId = R.id.normalBtn;
+        radiusProgress = 0;
+        mRadius = 4000;
         Intent intent = new Intent(getApplication(), LoginActivity.class);
         mPrefs.edit().putString(getString(R.string.username),"0").apply();
         intent.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);

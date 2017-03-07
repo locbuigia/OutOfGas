@@ -12,9 +12,7 @@ import java.util.Map;
 
 public class SettingActivity extends AppCompatActivity implements View.OnClickListener{
     private final int[] radiusArray = {4, 6, 8, 10, 12, 14, 16};
-    int radiusMultiplier = 1000;
-
-    TextView radius;
+    private final int radiusMultiplier = 1000;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -29,8 +27,9 @@ public class SettingActivity extends AppCompatActivity implements View.OnClickLi
         group.check(MapsActivity.checkedRadioBtnId);
 
         SeekBar seekBar = (SeekBar) findViewById(R.id.seekBarRadius);
-        radius = (TextView) findViewById(R.id.radiusTextView);
+        final TextView radius = (TextView) findViewById(R.id.radiusTextView);
         seekBar.setProgress(MapsActivity.radiusProgress);
+        radius.setText("Current Radius in Kilometers: " + radiusArray[seekBar.getProgress()]);
         seekBar.setOnSeekBarChangeListener(new SeekBar.OnSeekBarChangeListener() {
             @Override
             public void onProgressChanged(SeekBar seekBar, int i, boolean b) {
