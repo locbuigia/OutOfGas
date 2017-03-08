@@ -103,6 +103,14 @@
             android:layout_toRightOf="@+id/showPasswordCheckBox"
             android:layout_toEndOf="@+id/showPasswordCheckBox" />
 
+        <ProgressBar
+            android:id="@+id/progressBarRegister"
+            style="?android:attr/progressBarStyle"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignTop="@+id/createAccountButton"
+            android:layout_alignStart="@+id/createAccountButton" />
+
     </RelativeLayout>
 
 </FrameLayout>

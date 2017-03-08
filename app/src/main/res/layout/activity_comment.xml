@@ -11,25 +11,40 @@
     android:paddingRight="@dimen/activity_horizontal_margin"
     android:paddingTop="@dimen/activity_vertical_margin"
     tools:context="group5.tcss450.uw.edu.outofgas.CommentActivity">
-
-    <LinearLayout
-        android:orientation="vertical"
+    <RelativeLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:layout_weight="1">
 
-        <TextView
+        <LinearLayout
+            android:orientation="vertical"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
-            android:padding="10dp"
-            android:id="@+id/commentTV"
-            android:textColor="@color/black"
-            android:background="@drawable/custom_border_comment"
-            android:scrollbars="vertical"
-            android:gravity="bottom"
-            android:textSize="17dp"
-            />
-    </LinearLayout>
+            >
+
+            <ProgressBar
+                android:id="@+id/progressBar"
+                style="?android:attr/progressBarStyle"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content" />
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:padding="10dp"
+                android:id="@+id/commentTV"
+                android:textColor="@color/black"
+                android:background="@drawable/custom_border_comment"
+                android:scrollbars="vertical"
+                android:gravity="bottom"
+                android:textSize="17dp"
+                />
+
+        </LinearLayout>
+
+    </RelativeLayout>
+
+
 
     <LinearLayout
         android:orientation="horizontal"

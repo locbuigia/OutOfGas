@@ -19,6 +19,7 @@ import android.view.View;
 import android.widget.Button;
 import android.widget.CheckBox;
 import android.widget.EditText;
+import android.widget.ProgressBar;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -39,7 +40,7 @@ import java.net.URL;
 public class LoginActivity extends AppCompatActivity {
 
     /*
-     * The static username used to pass to another activiry;
+     * The static username used to pass to another activity;
      */
     public static String user = "";
     
@@ -76,6 +77,21 @@ public class LoginActivity extends AppCompatActivity {
     public static String mUsername = "";
 
     /*
+     * Login button
+     */
+    private Button loginButton;
+
+    /*
+    * Register button
+    */
+    private Button registerButton;
+
+    /*
+    * Progress bar for logging in
+    */
+    private ProgressBar mProgressBarLogin;
+
+    /*
      * Creates the activity and adds click listeners.
      */
     @Override
@@ -93,7 +109,9 @@ public class LoginActivity extends AppCompatActivity {
         username.requestFocus();
         password = (EditText) findViewById(R.id.password);
 
-        Button loginButton = (Button) findViewById(R.id.loginButton);
+        registerButton = (Button) findViewById(R.id.registerButton);
+
+        loginButton = (Button) findViewById(R.id.loginButton);
         loginButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -118,6 +136,9 @@ public class LoginActivity extends AppCompatActivity {
                 }
             }
         });
+
+        mProgressBarLogin = (ProgressBar) findViewById(R.id.progressBarLogin);
+        mProgressBarLogin.setVisibility(View.INVISIBLE);
     }
 
     /*
@@ -146,6 +167,14 @@ public class LoginActivity extends AppCompatActivity {
 
     private class GetWebServiceTask extends AsyncTask<String, Void, String> {
         private final String SERVICE = "loginApp.php";
+
+        @Override
+        protected void onPreExecute() {
+            loginButton.setClickable(false);
+            registerButton.setClickable(false);
+            mProgressBarLogin.setVisibility(View.VISIBLE);
+        }
+
         @Override
         protected String doInBackground(String... strings) {
             if (strings.length != 3) {
@@ -194,6 +223,9 @@ public class LoginActivity extends AppCompatActivity {
                 if (v != null) v.setGravity(Gravity.CENTER);
                 toast.show();
             }
+            loginButton.setClickable(true);
+            registerButton.setClickable(true);
+            mProgressBarLogin.setVisibility(View.GONE);
         }
     }
 

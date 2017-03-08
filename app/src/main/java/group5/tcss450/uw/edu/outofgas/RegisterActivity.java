@@ -15,6 +15,7 @@ import android.view.View;
 import android.widget.Button;
 import android.widget.CheckBox;
 import android.widget.EditText;
+import android.widget.ProgressBar;
 import android.widget.Toast;
 
 import java.io.BufferedReader;
@@ -57,6 +58,16 @@ public class RegisterActivity extends AppCompatActivity {
     private static final String PARTIAL_URL
             = "http://cssgate.insttech.washington.edu/" +
             "~locbui/";
+
+    /*
+    * Progress bar.
+    */
+    private ProgressBar mProgressBarRegister;
+
+    /*
+     * Register button.
+     */
+    private Button registerButton;
     
     /*
      * Creates the register activity and sets the click listeners.
@@ -66,6 +77,8 @@ public class RegisterActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_register);
+
+        mProgressBarRegister = (ProgressBar) findViewById(R.id.progressBarRegister);
 
         fullname = (EditText) findViewById(R.id.fullNameText);
         fullname.requestFocus();
@@ -90,7 +103,7 @@ public class RegisterActivity extends AppCompatActivity {
             }
         });
 
-        Button registerButton = (Button) findViewById(R.id.createAccountButton);
+        registerButton = (Button) findViewById(R.id.createAccountButton);
         registerButton.setOnClickListener(new View.OnClickListener() {
 
             @Override
@@ -106,10 +119,10 @@ public class RegisterActivity extends AppCompatActivity {
                 sendEmailTask = new SendEmailWebService();
                 if (fullname.getText().toString().trim().equalsIgnoreCase("")) {
                     fullname.setError("Please enter your name");
-                } else if (username.getText().toString().trim().equalsIgnoreCase("")) {
-                    username.setError("Please enter username");
-                } else if (password.getText().toString().trim().equalsIgnoreCase("")) {
-                    password.setError("Please enter password");
+                } else if (username.getText().toString().trim().equalsIgnoreCase("") || username.getText().toString().length() < 4) {
+                    username.setError("Please enter username with at least 4 characters");
+                } else if (password.getText().toString().trim().equalsIgnoreCase("") || password.getText().toString().length() < 4) {
+                    password.setError("Please enter password with at least 4 characters");
                 } else if (!(password.getText().toString().trim().equals(passwordConfirm.getText().toString().trim()))) {
                     passwordConfirm.setError("Password does not match!");
                 } else if (email.getText().toString().trim().equalsIgnoreCase("")) {
@@ -132,6 +145,13 @@ public class RegisterActivity extends AppCompatActivity {
 
     private class GetWebServiceTaskRegister extends AsyncTask<String, Void, String> {
         private final String SERVICE = "registerApp.php";
+
+        @Override
+        protected void onPreExecute() {
+            registerButton.setClickable(false);
+            mProgressBarRegister.setVisibility(View.VISIBLE);
+        }
+
         @Override
         protected String doInBackground(String... strings) {
             if (strings.length != 6) {
@@ -177,6 +197,8 @@ public class RegisterActivity extends AppCompatActivity {
             } else {
                 Toast.makeText(getApplication(), "Register Failed! Username already exists!", Toast.LENGTH_LONG).show();
             }
+            registerButton.setClickable(true);
+            mProgressBarRegister.setVisibility(View.GONE);
         }
     }
     

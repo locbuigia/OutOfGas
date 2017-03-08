@@ -204,7 +204,6 @@ public class MapsActivity extends AppCompatActivity implements OnMapReadyCallbac
                 DataTransfer[1] = url;
                 final GetNearbyPlacesData getNearbyPlacesData = new GetNearbyPlacesData();
                 getNearbyPlacesData.execute(DataTransfer);
-                Toast.makeText(MapsActivity.this,"Nearby Gas Stations", Toast.LENGTH_SHORT).show();
                 mMap.setOnInfoWindowClickListener(new GoogleMap.OnInfoWindowClickListener() {
                     @Override
                     public void onInfoWindowClick(Marker marker) {

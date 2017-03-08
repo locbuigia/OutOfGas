@@ -11,7 +11,9 @@ import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.text.method.ScrollingMovementMethod;
 import android.view.View;
+import android.view.Window;
 import android.widget.EditText;
+import android.widget.ProgressBar;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -36,6 +38,11 @@ public class CommentActivity extends AppCompatActivity implements View.OnClickLi
     private TextView t;
 
     /*
+     * Progress bar when loading comments.
+     */
+    private ProgressBar mProgressBar;
+
+    /*
      * The partial url for the php script.
      */
 
@@ -54,6 +61,9 @@ public class CommentActivity extends AppCompatActivity implements View.OnClickLi
 
         t = (TextView) findViewById(R.id.commentTV);
         t.setMovementMethod(new ScrollingMovementMethod());
+
+
+        mProgressBar = (ProgressBar) findViewById(R.id.progressBar);
 
         TextView b = (TextView) findViewById(R.id.commentSendText);
         b.setOnClickListener(this);
@@ -102,6 +112,12 @@ public class CommentActivity extends AppCompatActivity implements View.OnClickLi
 
     private class loadCommentTask extends AsyncTask<String, Void, String> {
         private final String SERVICE = "loadComment.php";
+
+        @Override
+        protected void onPreExecute() {
+            mProgressBar.setVisibility(View.VISIBLE);
+        }
+
         @Override
         protected String doInBackground(String... strings) {
             if (strings.length != 2) {
@@ -141,6 +157,8 @@ public class CommentActivity extends AppCompatActivity implements View.OnClickLi
                 result = result.replace('~', '\n');
                 t.setText(result);
             }
+
+            mProgressBar.setVisibility(View.GONE);
         }
     }
 
@@ -151,6 +169,7 @@ public class CommentActivity extends AppCompatActivity implements View.OnClickLi
 
     private class saveCommentTask extends AsyncTask<String, Void, String> {
         private final String SERVICE = "saveComment.php";
+
         @Override
         protected String doInBackground(String... strings) {
             if (strings.length != 3) {

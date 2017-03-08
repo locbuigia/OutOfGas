@@ -14,6 +14,7 @@ import android.view.Gravity;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.ProgressBar;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -44,6 +45,16 @@ public class ForgotPasswordActivity extends AppCompatActivity {
     private static final String PARTIAL_URL
             = "http://cssgate.insttech.washington.edu/" +
             "~locbui/";
+
+    /*
+     * Progress bar.
+     */
+    private ProgressBar mProgressBarForgorPassword;
+
+    /*
+     * Forgot password button.
+     */
+    private Button forgotPwdBtn;
     
     /*
      * Creates the activity and adds click listeners.
@@ -53,12 +64,13 @@ public class ForgotPasswordActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_forgot_password);
+        mProgressBarForgorPassword = (ProgressBar) findViewById(R.id.progressBarForgotPassword);
         username = (EditText) findViewById(R.id.forgotUsernameText);
         fullname = (EditText) findViewById(R.id.forgotNameText);
         fullname.requestFocus();
         email = (EditText) findViewById(R.id.forgotEmailText);
 
-        Button forgotPwdBtn = (Button) findViewById(R.id.receivePasswordButton);
+        forgotPwdBtn = (Button) findViewById(R.id.receivePasswordButton);
         forgotPwdBtn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -88,6 +100,13 @@ public class ForgotPasswordActivity extends AppCompatActivity {
 
     private class GetPasswordTask extends AsyncTask<String, Void, String> {
         private final String SERVICE = "forgotPassword.php";
+
+        @Override
+        protected void onPreExecute() {
+            forgotPwdBtn.setClickable(false);
+            mProgressBarForgorPassword.setVisibility(View.VISIBLE);
+        }
+
         @Override
         protected String doInBackground(String... strings) {
             if (strings.length != 4) {
@@ -138,6 +157,8 @@ public class ForgotPasswordActivity extends AppCompatActivity {
                 intent.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
                 startActivity(intent);
             }
+            forgotPwdBtn.setClickable(true);
+            mProgressBarForgorPassword.setVisibility(View.GONE);
         }
     }
 }

@@ -16,6 +16,7 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.ProgressBar;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -57,6 +58,16 @@ public class VerifyFragment extends Fragment {
             = "http://cssgate.insttech.washington.edu/" +
             "~locbui/";
 
+    /*
+    * Progress bar.
+    */
+    private ProgressBar mProgressBarVerify;
+
+    /*
+     * Verify account button.
+     */
+    private Button verifyAccount;
+
     public VerifyFragment() {
         // Required empty public constructor
     }
@@ -70,10 +81,13 @@ public class VerifyFragment extends Fragment {
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
         View view = inflater.inflate(R.layout.fragment_verify, container, false);
+
+        mProgressBarVerify = (ProgressBar) view.findViewById(R.id.progressBarVerify);
+
         verifyCode = (EditText) view.findViewById(R.id.verifyCodeText);
         verifyUsername = (EditText) view.findViewById(R.id.usernameVerify);
 
-        Button verifyAccount = (Button) view.findViewById(R.id.verifyButton);
+        verifyAccount = (Button) view.findViewById(R.id.verifyButton);
         verifyAccount.setOnClickListener(new View.OnClickListener() {
 
             @Override
@@ -105,6 +119,13 @@ public class VerifyFragment extends Fragment {
 
     private class GetWebServiceTaskRegister extends AsyncTask<String, Void, String> {
         private final String SERVICE = "registerPermanent.php";
+
+        @Override
+        protected void onPreExecute() {
+            verifyAccount.setClickable(false);
+            mProgressBarVerify.setVisibility(View.VISIBLE);
+        }
+
         @Override
         protected String doInBackground(String... strings) {
             if (strings.length != 3) {
@@ -151,6 +172,9 @@ public class VerifyFragment extends Fragment {
                 if (v != null) v.setGravity(Gravity.CENTER);
                 toast.show();
             }
+
+            verifyAccount.setClickable(true);
+            mProgressBarVerify.setVisibility(View.GONE);
         }
     }
 }
