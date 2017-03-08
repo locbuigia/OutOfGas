@@ -30,7 +30,13 @@ import java.net.URL;
  */
 
 public class VerifyFragment extends Fragment {
+
+    /*
+     * The username that is used to pass to comment activity.
+     */
+
     public static String myVerifyUsername = "";
+
     /*
      * Edittext field for the verifcation code.
      */
@@ -72,7 +78,7 @@ public class VerifyFragment extends Fragment {
 
             @Override
             public void onClick(View v) {
-                AsyncTask<String, Void, String> task = null;
+                AsyncTask<String, Void, String> task;
                 String verifyCodeString = verifyCode.getText().toString();
                 String verifyUsernameString = verifyUsername.getText().toString();
 
@@ -114,7 +120,7 @@ public class VerifyFragment extends Fragment {
                 urlConnection = (HttpURLConnection) urlObject.openConnection();
                 InputStream content = urlConnection.getInputStream();
                 BufferedReader buffer = new BufferedReader(new InputStreamReader(content));
-                String s = "";
+                String s;
                 while ((s = buffer.readLine()) != null) {
                     response += s;
                 }

@@ -38,7 +38,10 @@ import java.net.URL;
 
 public class LoginActivity extends AppCompatActivity {
 
-    static String user = "";
+    /*
+     * The static username used to pass to another activiry;
+     */
+    public static String user = "";
     
     /*
      * Edittext fields that hold the entered username and password.

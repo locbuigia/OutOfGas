@@ -63,13 +63,13 @@ public class MapsActivity extends AppCompatActivity implements OnMapReadyCallbac
      * Latitude value for the current location.
      */
 
-    double latitude;
+    private double latitude;
 
     /*
      * Longitude value for the current location.
      */
 
-    double longitude;
+    private double longitude;
 
     /*
      * The radius for the search of gas stations.
@@ -81,19 +81,19 @@ public class MapsActivity extends AppCompatActivity implements OnMapReadyCallbac
      * Google maps api object.
      */
 
-    GoogleApiClient mGoogleApiClient;
+    private GoogleApiClient mGoogleApiClient;
 
     /*
      * The current location marker of the user.
      */
 
-    Marker mCurrLocationMarker;
+    private Marker mCurrLocationMarker;
 
     /*
      * object for requesting the location.
      */
 
-    LocationRequest mLocationRequest;
+    private LocationRequest mLocationRequest;
 
     /*
      * The radio button object.
@@ -299,7 +299,7 @@ public class MapsActivity extends AppCompatActivity implements OnMapReadyCallbac
         longitude = location.getLongitude();
         Log.d("lat:" , "" + latitude);
         Log.d("lng:" , "" + longitude);
-        LatLng latLng = new LatLng(location.getLatitude(), location.getLongitude());
+        LatLng latLng = new LatLng(latitude, longitude);
         MarkerOptions markerOptions = new MarkerOptions();
         markerOptions.position(latLng);
         markerOptions.title("Current Position");
@@ -310,13 +310,6 @@ public class MapsActivity extends AppCompatActivity implements OnMapReadyCallbac
         mMap.moveCamera(CameraUpdateFactory.newLatLng(latLng));
         mMap.animateCamera(CameraUpdateFactory.zoomTo(13));
         Toast.makeText(MapsActivity.this,"Your Current Location", Toast.LENGTH_SHORT).show();
-
-
-        //stop location updates
-        if (mGoogleApiClient != null) {
-            LocationServices.FusedLocationApi.removeLocationUpdates(mGoogleApiClient, this);
-        }
-
     }
 
     /**
@@ -362,7 +355,7 @@ public class MapsActivity extends AppCompatActivity implements OnMapReadyCallbac
 
     @Override
     public void onConnectionFailed(ConnectionResult connectionResult) {
-
+        Log.d("Fail:", "Failed to connect");
     }
 
     public static final int MY_PERMISSIONS_REQUEST_LOCATION = 99;
