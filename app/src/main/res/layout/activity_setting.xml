@@ -3,103 +3,114 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="@drawable/camaro"
+    android:padding="10dp"
     tools:context="group5.tcss450.uw.edu.outofgas.SettingActivity">
 
-    <RelativeLayout
+    <ScrollView
         android:layout_width="match_parent"
-        android:layout_height="match_parent">
+        android:layout_height="match_parent"
+        android:background="@drawable/custom_border">
 
-        <TextView
-            android:id="@+id/textView"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginStart="12dp"
-            android:layout_marginTop="24dp"
-            android:textSize="18dp"
-            android:textColor="@color/black"
-            android:text="@string/chooseView"
-            android:layout_alignParentTop="true"
-            android:layout_alignParentStart="true" />
 
-        <RadioGroup
-            android:id="@+id/radioGroup"
+        <RelativeLayout
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:orientation="horizontal"
-            android:layout_below="@+id/textView"
-            android:layout_alignParentStart="true"
-            android:layout_marginTop="18dp">
+            android:layout_height="match_parent">
 
-            <RadioButton
-                android:id="@+id/normalBtn"
+            <TextView
+                android:id="@+id/textView"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_weight="1"
-                android:text="@string/normalMap"/>
+                android:layout_marginStart="12dp"
+                android:layout_marginTop="18dp"
+                android:textSize="18dp"
+                android:textColor="@color/white"
+                android:text="@string/chooseView"
+                android:layout_alignParentTop="true"
+                android:layout_alignParentStart="true" />
 
-            <RadioButton
-                android:id="@+id/satelliteBtn"
+            <RadioGroup
+                android:id="@+id/radioGroup"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal"
+                android:layout_below="@+id/textView"
+                android:layout_alignParentStart="true"
+                android:layout_marginTop="18dp">
+
+                <RadioButton
+                    android:id="@+id/normalBtn"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:text="@string/normalMap"
+                    android:textColor="@color/white"/>
+
+                <RadioButton
+                    android:id="@+id/satelliteBtn"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:text="@string/satleliteMap"
+                    android:textColor="@color/white" />
+
+                <RadioButton
+                    android:id="@+id/hybridBtn"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:text="@string/hybridMap"
+                    android:textColor="@color/white"/>
+
+            </RadioGroup>
+
+            <TextView
+                android:id="@+id/textView2"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_weight="1"
-                android:text="@string/satleliteMap" />
+                android:layout_alignStart="@+id/textView"
+                android:layout_below="@+id/radioGroup"
+                android:layout_marginTop="66dp"
+                android:textSize="18dp"
+                android:text="@string/chooseRadius"
+                android:textColor="@color/white"/>
 
-            <RadioButton
-                android:id="@+id/hybridBtn"
+            <SeekBar
+                android:id="@+id/seekBarRadius"
+                style="@style/Widget.AppCompat.SeekBar.Discrete"
+                android:layout_width="350dp"
+                android:layout_height="wrap_content"
+                android:max="6"
+                android:progress="0"
+                android:layout_below="@+id/textView2"
+                android:layout_alignStart="@+id/textView2"
+                android:layout_marginTop="15dp" />
+
+            <TextView
+                android:id="@+id/radiusTextView"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_weight="1"
-                android:text="@string/hybridMap" />
+                android:text="@string/currentRadius"
+                android:textSize="18dp"
+                android:layout_below="@+id/seekBarRadius"
+                android:layout_alignStart="@+id/seekBarRadius"
+                android:layout_marginTop="24dp"
+                android:textColor="@color/white"/>
 
-        </RadioGroup>
-
-        <TextView
-            android:id="@+id/textView2"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_alignStart="@+id/textView"
-            android:layout_below="@+id/radioGroup"
-            android:layout_marginTop="66dp"
-            android:textSize="18dp"
-            android:text="@string/chooseRadius"
-            android:textColor="@color/black"/>
-
-        <SeekBar
-            android:id="@+id/seekBarRadius"
-            style="@style/Widget.AppCompat.SeekBar.Discrete"
-            android:layout_width="350dp"
-            android:layout_height="wrap_content"
-            android:max="6"
-            android:progress="0"
-            android:layout_below="@+id/textView2"
-            android:layout_alignStart="@+id/textView2"
-            android:layout_marginTop="15dp" />
-
-        <TextView
-            android:id="@+id/radiusTextView"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="@string/currentRadius"
-            android:textSize="18dp"
-            android:textColor="@color/black"
-            android:layout_below="@+id/seekBarRadius"
-            android:layout_alignStart="@+id/seekBarRadius"
-            android:layout_marginTop="24dp" />
-
-        <TextView
-            android:id="@+id/textView3"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_alignStart="@+id/radiusTextView"
-            android:layout_below="@+id/radiusTextView"
-            android:layout_marginTop="23dp"
-            android:textStyle="italic"
-            android:textSize="18dp"
-            android:textColor="@color/black"
-            android:text="@string/message"
-            android:layout_alignEnd="@+id/seekBarRadius" />
+            <TextView
+                android:id="@+id/textView3"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_alignStart="@+id/radiusTextView"
+                android:layout_below="@+id/radiusTextView"
+                android:layout_marginTop="23dp"
+                android:textStyle="italic"
+                android:textSize="18dp"
+                android:textColor="@color/white"
+                android:text="@string/message"
+                android:layout_alignEnd="@+id/seekBarRadius" />
 
 
-    </RelativeLayout>
+        </RelativeLayout>
+    </ScrollView>
 
 </LinearLayout>

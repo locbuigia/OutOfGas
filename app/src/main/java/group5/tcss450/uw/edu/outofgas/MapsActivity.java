@@ -293,22 +293,21 @@ public class MapsActivity extends AppCompatActivity implements OnMapReadyCallbac
             mCurrLocationMarker.remove();
         }
 
-        //Place current location marker
-        latitude = location.getLatitude();
-        longitude = location.getLongitude();
-        Log.d("lat:" , "" + latitude);
-        Log.d("lng:" , "" + longitude);
-        LatLng latLng = new LatLng(latitude, longitude);
-        MarkerOptions markerOptions = new MarkerOptions();
-        markerOptions.position(latLng);
-        markerOptions.title("Current Position");
-        markerOptions.icon(BitmapDescriptorFactory.defaultMarker(BitmapDescriptorFactory.HUE_MAGENTA));
-        mCurrLocationMarker = mMap.addMarker(markerOptions);
+        Location lastLocation = new Location("Last Location");
+        lastLocation.setLatitude(latitude);
+        lastLocation.setLongitude(longitude);
+        if (location.distanceTo(lastLocation) > 1000) {
+            //Place current location marker
+            latitude = location.getLatitude();
+            longitude = location.getLongitude();
+            LatLng latlng = new LatLng(latitude, longitude);
+            Log.d("lat:" , "" + latitude);
+            Log.d("lng:" , "" + longitude);
 
-        //move map camera
-        mMap.moveCamera(CameraUpdateFactory.newLatLng(latLng));
-        mMap.animateCamera(CameraUpdateFactory.zoomTo(13));
-        Toast.makeText(MapsActivity.this,"Your Current Location", Toast.LENGTH_SHORT).show();
+            mMap.moveCamera(CameraUpdateFactory.newLatLng(latlng));
+            mMap.animateCamera(CameraUpdateFactory.zoomTo(13));
+        }
+
     }
 
     /**

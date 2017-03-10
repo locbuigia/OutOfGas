@@ -9,7 +9,7 @@
     <string name="sendCommentButton">Send</string>
     <string name="forgotPassword">Forgot password?</string>
     <string name="verifyYourAccount">Verify your account</string>
-    <string name="distance">Distance(miles):</string>
+    <string name="distance">Distance:</string>
     <string name="price_level">Price level:*</string>
     <string name="name">Name:</string>
     <string name="address">Address:</string>

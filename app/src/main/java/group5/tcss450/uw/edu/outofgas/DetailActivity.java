@@ -15,6 +15,7 @@ import android.os.Bundle;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.widget.FrameLayout;
+import android.widget.RelativeLayout;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -80,6 +81,9 @@ public class DetailActivity extends AppCompatActivity {
         setContentView(R.layout.activity_detail);
         mPrefs = getSharedPreferences(getString(R.string.SHARED_PREFS), Context.MODE_PRIVATE);
 
+        RelativeLayout detail = (RelativeLayout) findViewById(R.id.detailLayout);
+        detail.setVerticalScrollBarEnabled(true);
+
         mNameTv = (TextView) findViewById(R.id.nameTextView);
         String name = getIntent().getSerializableExtra("name").toString();
         mNameTv.setText(name);
@@ -99,7 +103,8 @@ public class DetailActivity extends AppCompatActivity {
         TextView distanceTv = (TextView) findViewById(R.id.distanceTextView);
         String distance = getIntent().getSerializableExtra("distance").toString();
         double distanceInNum = Double.parseDouble(distance);
-        distanceTv.setText(new DecimalFormat("##.##").format(distanceInNum));
+        String mile = " mile(s)";
+        distanceTv.setText(new DecimalFormat("##.##").format(distanceInNum) + mile);
     }
 
     /*
