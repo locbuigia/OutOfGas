@@ -22,6 +22,7 @@ Change The Map View - The user can change the type of map presented to them, in 
 Get Directions - Users can get directions to their specified gas station, on the bottom right of the screen.
 
 Hardware/Other Requirements:
+
 This application will be targeted for all android devices using Lollipop (5.0) version and later versions. This application may not work on older version device.
 
 We recommend using this app on Google Nexus device. However, for the best experiences, we recommend using the Google Nexus 6P, because we are testing the application on Nexus 6P platform.
