@@ -4,11 +4,19 @@ This program implements the Google maps api to create a map for the user to view
 
 Use Cases: 
 Register - Users can register with their emails. 
+
 Log In - If a user has an existing account, then they are able to log in once they've provided their username and password. 
+
 Keep Me Logged In - When user checks the stay user logged in, they will stay logged in even when they exit the app. Until they sign out explicitly.
+
 Forgot Password - If a user has forgotton their password, then by providing their username and email they can get it back.
+
 Comments - Users can comment on a selected gas station and view comments made by others.
+
 Saved Gas Stations - Users can save their favorite gas stations and be able to pull up a list of them.
+
 Search Radius - Users can specify the max distance, in the setttings, to search for gas stations.
+
 Change The Map View - The user can change the type of map presented to them, in the settings.
+
 Get Directions - Users can get directions to their specified gas station, on the bottom right of the screen.
